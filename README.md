@@ -2,7 +2,7 @@
 
 
 #### Full documentation
-- Refer wiki pages.
+- Refer the /docs folder and wiki pages.
 
 #### Communication
 - Slack channel (private)
