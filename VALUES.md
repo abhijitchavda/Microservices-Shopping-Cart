@@ -30,10 +30,21 @@ The team has been supportive and seem to have no issues sharing their thoughts a
 
 <Make an entry here>
 
-**5. Feedback**
+**5. Feedback-Abhijitsinh**
 
-<Make an entry here>
+From the very first day itself, we as a team decided upon taking feedback from each team member before taking any major steps for the project. We as a team understand that early and frequent feedback will help us see things with different perspective. This will give us plethora of option from which we can choose the best one for the project.
 
+Feedback from team members
+
+-As a team we decided that each team member would come up with ideas on project domain and sub domains to choose for the project. Each team member presented ideas for the same. Each idea was followed by feedback from team members with pros and cons about the idea.
+
+-As a team we decided that each team member would come up with the basic idea about their respective sub-domains functionality and architecture. Each team member presented functionalities of their respective sub-domain. The presentation was followed by feedback from all the team members. We discussed what obstacles we would face and what could be the possible solution to overcome those obstacles.
+  
+Feedback from professor
+
+-As a team we decided to simplify our project by using open source templates for front end requirement. This idea was discussed with professor and based on professors feedback we decided to go with available open source templates for front end.
+
+-At the end of this week we as a team have decided to go and present our project plan to professor and ask for his valuable feedback so we can make any changes necessary to the project plan.
 ---
 
 ## Week 2:
