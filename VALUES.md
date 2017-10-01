@@ -4,9 +4,19 @@ This document has been created to maintain a weekly journal entry to ensure that
 
 ## Week 1:
 
-**1. Simplicty**
+**1. Simplicty - Niral Koradia**
 
-<Make an entry here>
+“Simplicity is the real beauty”
+
+From the starting of the project, all of our team members have decided to go with the simple approaches throughout the project implementation. We believe that for all complex problem, solution is always simple.
+
+In the first week, we discussed about the understanding about the project requirement and things that we need to research about the technologies. Our goal is to make best application for the given project requirement keeping in mind time frames and approaches. We, as a team, agreed to come up on next meeting with project architecture along with technology stacks.
+
+After the professor’s confirmation on usage of simple or open source templates for front-end development, it’s pretty clear for us to focus more on Back-end service and it’s deployment on cloud cluster.
+
+As a meeting conclusion, we asked each team member to research on different tools, application functionality scope and code-development approaches and share their opinion in next meeting before finalizing the project structure and flow of the application.
+
+
 
 **2. Eliminate Waste - Prathmesh**
 
