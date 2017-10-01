@@ -71,9 +71,17 @@ The team continues to focus on a wholistic approach by refining the ideas behind
 
 <Make an entry here>
 
-**5. Feedback**
+**5. Feedback-Abhijitsinh**
 
-<Make an entry here>
+This week we as a team decided to come up with basic architecture of the system. Each team member was asked to come with the type of functionalities that their respective sub-domains will have, different ways to achieve those functionalities and basic workflow of sub domain module.
+
+Feedback from Team Members
+
+Each team member came up with functionalities of their sub-domain. Each team member presented the functionalities to the team. This presentation was followed by feedback from the team. Feedback consisted of how some functionalities would complicate the overall system or would conflict with working of other sub-domain modules. Based on the feedback we redefined functionalities for each sub-domain.
+
+As we all have selected particular sub-domain, at end we will be combining these modules to form complete system. We as a team took the functionalities of each sub-domain into consideration and created a basic workflow of our system. This would not have been possible without the feedback of each member on how each sub-domain would be functioning and interacting with others services.
+
+As every project has its own problems and challenges, so does ours. We as a team discussed on different workflows for the project and what challenges will be faced if we follow a particular workflow. All team members gave their feedback on each workflow and finally came up with a workflow by using which we can avoid as many problems as possible. This would not have been possible without the inputs and feedback of each team member.
 
 ---
 
