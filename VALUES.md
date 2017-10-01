@@ -8,9 +8,15 @@ This document has been created to maintain a weekly journal entry to ensure that
 
 <Make an entry here>
 
-2. Eliminate Waste
+2. Eliminate Waste - Prathmesh
 
-<Make an entry here>
+The best way to eliminate waste is to do what is being asked and not more than that. Right from the starting our priority was to discard unwanted features and processes.
+
+During the first week, we used the knowledge that was available within the team members and tried not to reinvent the wheel. We shared knowledge throughout the week in our meetings and Meeting Minutes were documented.
+
+We discussed to use open-source templates as the aim of this project is to implement Backend Data Service thus eliminating and focusing on what is being asked.
+
+In the end of the meeting, we asked each member to think on what should be the suite of our application, what will be the process flow, and what complexities can arrive in the sub modules and share their understanding in next meeting.
 
 3. See the whole
 
