@@ -59,7 +59,7 @@ Feedback from professor
 
 ## Week 2:
 
-**1. Simplicty**
+**1. Simplicty -- Niral Koradia**
 
 In the second week of our project, we decided to finalize the basic architecture of the system. Each team member comes up with their understanding about the type of functionalities that their respective sub-domains. We discussed the approaches to achieve those functionalities and basic workflow of subdomain module.
 
