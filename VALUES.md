@@ -44,7 +44,7 @@ Feedback from professor
 
 -As a team we decided to simplify our project by using open source templates for front end requirement. This idea was discussed with professor and based on professors feedback we decided to go with available open source templates for front end.
 
--At the end of this week we as a team have decided to go and present our project plan to professor and ask for his valuable feedback so we can make any changes necessary to the project plan.
+
 ---
 
 ## Week 2:
