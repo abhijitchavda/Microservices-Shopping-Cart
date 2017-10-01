@@ -55,13 +55,20 @@ Feedback from professor
 -As a team we decided to simplify our project by using open source templates for front end requirement. This idea was discussed with professor and based on professors feedback we decided to go with available open source templates for front end.
 
 
----
+-------
 
 ## Week 2:
 
 **1. Simplicty**
 
-<Make an entry here>
+In the second week of our project, we decided to finalize the basic architecture of the system. Each team member comes up with their understanding about the type of functionalities that their respective sub-domains. We discussed the approaches to achieve those functionalities and basic workflow of subdomain module.
+
+Initially, we are confused with so many functionalities and how to incorporate it into our project. To make it simple, we have noted down the functionalities sub-domain wise on the White Board and decide to go with the basic working functionalities first and make it workable. Our motto is to be simple in each stage with core functionalities.
+
+To make the process simple, Each member has finalized the functionalities that need to build in the first go. Each team member will start with their frontend part first. After the completion of front-end, we will start will back-end. To make the back-end simple and scalable, we will be creating micro-service for each functionality.
+
+As a meeting conclusion, we asked each team member to start working on their 
+individual domain with the simple approach of the building project by creating micro-services for each functionality.
 
 **2. Eliminate Waste**
 
