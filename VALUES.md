@@ -38,7 +38,12 @@ The team has been supportive and seem to have no issues sharing their thoughts a
 
 **4. Communication**
 
-<Make an entry here>
+The value 'communication' is one of the important aspect of an agile project. Communication in our project is classified into two areas viz.,
+<li>Team communication</li>: Team members working together need to communicate in a manner which is most effective and result driven. The team meets twice a week in order to discuss the ideas, current progress and issues related to the project. These meetings are driven by an agenda with all the minutes recorded and published on a weekly basis. We have also created a channel on **slack** as an official outlet for team communication.
+<li>Review communication</li>: Reviewing the work that is complete at regular intevals is an integral part of any project. For our project we will be having regular review sessions with project manager (Prof. Paul) so that our work aligns with all the guidelines and processess defined.
+
+
+As on the first week, the team is actively and equally involved in the team meetings as well as on the slack channel. The minutes of the meetings have also been updated in the project repository.
 
 **5. Feedback-Abhijitsinh**
 
