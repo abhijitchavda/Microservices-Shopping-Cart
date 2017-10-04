@@ -89,9 +89,15 @@ This week, the focus was to have a concrete architecture for the product. The te
 
 The team continues to focus on a wholistic approach by refining the ideas behind each module to meet the requirements and goals of the project. There is a clear understanding on individual responsibilities and the impact their decisions have on the project. The mid-week meeting assists the team to ensure that all aspects are taken into consideration while making component and architecture based decisions to reduce complexities during the implementation phase.
 
+
 **4. Communication**
 
-<Make an entry here>
+This week the focus of our meeting was to go through the various options for our application. In order to facilitate this kind of a discussion it was necessary that all members met together and express their ideas using visual communication aids. A meeting room was booked in the MLK Library and the team was engaged in a productive discussion.
+
+It was good to see each of the members actively contributing to their own sub modules as well as sharing inputs to others. We made full use of the projector and whiteboards that we had in order to have a collaborative and effective team meeting. There were times where the group diverted to sub topics but were quick enough to come back to the proposed agenda.
+
+The project artifacts were shared on our **slack** channel and the minutes of the meeting were updated on to our wiki pages. It was decided that we have these meetings at least once in two weeks where we can discuss our ideas/progress in a meeting room.
+
 
 **5. Feedback-Abhijitsinh**
 
