@@ -113,3 +113,8 @@ As every project has its own problems and challenges, so does ours. We as a team
 
 ---
 
+## Week 3:
+
+**3. See the whole**
+
+This week, the team got together to analyze the use cases and agree on the layout and design to get a better picture of the workflow. We identified implementation complexities and decided on options that would assist in simplifying tasks throughout all modules, stressing on reuse and clean code. We discussed the inter-dependencies that may exist and how to tackle them to ensure that the project in its entirety is simplified. The team continues to be enthusiastic and motivated to complete the project. 
