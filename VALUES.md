@@ -115,15 +115,21 @@ As every project has its own problems and challenges, so does ours. We as a team
 
 ## Week 3:
 
+**1. Simplicty -- Niral Koradia**
+
+In our 3rd week, we worked on analysing design of the front end components and it's flow. In our analysis, we discussed various designs and it's complexities. Since our objective is to build the functionality working of the project rather than building it's look and feel, we have finalized the simple UI wireframes to kick start our project. One of our team member has prepared UI wireframes and our team has started building there individual UI modules. Once we build our simple working skeleton of the project we will work on enhancing it's look and feel.
+
+
+
 **2. Eliminate Waste - Prathmesh**
 
-This week, the team analyed the UI wireframes to understand how our user interface will llok like which give us a better idea when we will design the user interface. We tried to identify the complexities which would arise when we start with the coding and tried to analyze how we were going to challenge them so that project could runs smoothly. Thus  eliminatng waste by saving time which had been our moto from start.
+This week, the team analyed the UI wireframes to understand how our user interface will look like which give us a better idea when we will design the user interface. We tried to identify the complexities which would arise when we start with the coding and tried to analyze how we were going to challenge them so that project could runs smoothly. Thus  eliminatng waste by saving time which had been our moto from start.
 
-**3. See the whole**
+**3. See the whole -- Aashish **
 
 This week, the team got together to analyze the use cases and agree on the layout and design to get a better picture of the workflow. We identified implementation complexities and decided on options that would assist in simplifying tasks throughout all modules, stressing on reuse and clean code. We discussed the inter-dependencies that may exist and how to tackle them to ensure that the project in its entirety is simplified. The team continues to be enthusiastic and motivated to complete the project. 
 
-**5. Feedback-Abhijitsinh**
+**5. Feedback -- Abhijitsinh**
 
 We as a team decided to come up with the design of the front end components for each of the sub domains and a basic flow for all the sub-domains for this week. 
 
