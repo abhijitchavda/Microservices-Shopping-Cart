@@ -122,3 +122,13 @@ This week, the team analyed the UI wireframes to understand how our user interfa
 **3. See the whole**
 
 This week, the team got together to analyze the use cases and agree on the layout and design to get a better picture of the workflow. We identified implementation complexities and decided on options that would assist in simplifying tasks throughout all modules, stressing on reuse and clean code. We discussed the inter-dependencies that may exist and how to tackle them to ensure that the project in its entirety is simplified. The team continues to be enthusiastic and motivated to complete the project. 
+
+**5. Feedback-Abhijitsinh**
+
+We as a team decided to come up with the design of the front end components for each of the sub domains and a basic flow for all the sub-domains for this week. 
+
+Feedback from the team
+
+We as a team discussed the front end components of each sub domain and discussed the look and feel of each one. Each team member presented his idea on the front end design and how is he planning his user interaction for the same. Each presentation was followed by feedback from team memebers on what should be flow for the fucntionality for each sub domain and what front end components needs to be placed where . This feedback helped each team member to get an over all idea of how their sub domain would interact with the user.
+
+One member from our team designed the wireframe diagram based on the frontend components and flow decided by the team. This wireframe was analysed by the team and because of this process of the feedback we where able to figure out the parts that he has missed with the wireframe. After this he updated the wireframe accordingly.
