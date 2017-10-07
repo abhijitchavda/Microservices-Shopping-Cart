@@ -1,0 +1,82 @@
+As a user, I would like to have a shopping cart application where i or my group users can search for the all the items in the product catalogue, see its description, quantities, price, etc in details, can add or remove from the cart along with the option to share the same cart with friends and have facalities to authenticate the payment and process the orders.
+
+Detail requirements are as below
+
+#User Stories - Overview
+
+1) Authentication: User can signup/login/logout
+
+2) Items for sale: User can view lists of items for sale and search by name, filter by price.
+
+3) Shopping Cart: User/group of users can add items to shopping cart and the app remembers it next time you login. Users can view all the items in their shopping cart. Users can delete items in the shopping cart.
+
+4) Checkout: User(s) can fill in form and submit billing info.  After submitting billing info, items in the shopping cart should be processed.
+
+
+# Authentication
+
+
+Registration:
+
+1) Create a signin/signup page. 
+
+2) Add a url/controller/template /signup
+
+3) /signup has a form, username, email, and password.
+
+4) "Submit" button posts to /register
+
+5) /register creates a new user
+
+
+Authenticate: 
+
+1) Create a new page that is only for logged in users. A members only page.  Up to you what you want to show!
+
+2) If the user is logged in, show the page.
+
+3) If not, redirect the user to the login page
+
+
+
+# Items
+
+1) Create a new Item Model with the following fields:
+
+Name, Description, Price
+
+2) Create several in the admin or shell
+
+3) Create new routes and templates to show a listing of the items
+
+
+# Search
+
+1) Add search box to items listing page.
+
+# Filter
+
+1) Allow the user to filter items by price.
+
+
+# Shopping cart/order
+
+An order belongs to a user or group of user, and has multiple items. A user can have many orders.
+
+- Allow user/users of same group can add/delete items from the cart
+
+- Shows the total price of all items
+
+- Allows them to purchase items, purchasing takes the user to payment form at /payments
+
+
+# Payment form
+
+- Create a form that allows the user to enter billing info 
+
+- On submit, the order should change to processed and inventory should be updated properly. 
+
+
+
+
+
