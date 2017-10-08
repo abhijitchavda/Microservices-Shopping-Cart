@@ -1,0 +1,11 @@
+#### User functions.
+- [ ] New user signup.
+- [ ] Existing user signin.
+- [ ] Existing user signout.
+- [ ] User credential encryption.
+- [ ] User profile page.
+  - [ ] Picture upload.
+  - [ ] FName LName.
+  - [ ] Self Description/Summary.
+- [ ] User file lists.
+- [ ] User activity report.
