@@ -129,6 +129,16 @@ This week, the team analyed the UI wireframes to understand how our user interfa
 
 This week, the team got together to analyze the use cases and agree on the layout and design to get a better picture of the workflow. We identified implementation complexities and decided on options that would assist in simplifying tasks throughout all modules, stressing on reuse and clean code. We discussed the inter-dependencies that may exist and how to tackle them to ensure that the project in its entirety is simplified. The team continues to be enthusiastic and motivated to complete the project. 
 
+
+**4. Communication**
+
+The focus for this week was to complete the front end aspects of the application for all the modules. The meeting was setup to this effect and the front end aspects. During the meeting we discussed about the GUI for the login screen as well as the concurrent shopping cart screen.
+
+The discussion continued with the wireframe model for each page, the model was updated wherever necessary and front-ends from real world applications were shared and discussed upon. It was decided to use some ideas from these into our application.
+
+The minutes of the meeting along with the reference documentation were shared on our **slack channel** The timelines for certain aspects of the project were discussed and in some cases reviewed. All in all, in this meeting we were able to close our GUI screens for the modules of our application.
+
+
 **5. Feedback -- Abhijitsinh**
 
 We as a team decided to come up with the design of the front end components for each of the sub domains and a basic flow for all the sub-domains for this week. 
