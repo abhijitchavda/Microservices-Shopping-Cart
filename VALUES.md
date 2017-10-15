@@ -148,3 +148,14 @@ Feedback from the team
 We as a team discussed the front end components of each sub domain and discussed the look and feel of each one. Each team member presented his idea on the front end design and how is he planning his user interaction for the same. Each presentation was followed by feedback from team memebers on what should be flow for the fucntionality for each sub domain and what front end components needs to be placed where . This feedback helped each team member to get an over all idea of how their sub domain would interact with the user.
 
 One member from our team designed the wireframe diagram based on the frontend components and flow decided by the team. This wireframe was analysed by the team and because of this process of the feedback we where able to figure out the parts that he has missed with the wireframe. After this he updated the wireframe accordingly.
+
+## Week 4:
+
+**4. Communication -- neville**
+
+This week was the midterm week and hence correct communication about project work was of utmost importance. It was decided that project related deliverables would be reviewed in the next week and there will be no face to face meeting during the week.
+
+Our discussions continued on our **slack channel** where we discussed about the user activity logging functionality. Keeping the project timeline in mind it was decided to start uploading code for the respective modules onto our repository so that a peer review can be initiated.
+
+Looking forward to the next week where we will be starting off with the complete application architecture design and building, deploying pieces that are ready.
+
