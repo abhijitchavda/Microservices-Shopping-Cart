@@ -151,6 +151,12 @@ One member from our team designed the wireframe diagram based on the frontend co
 
 ## Week 4:
 
+**1. Simplicty -- Niral Koradia**
+
+**2. Eliminate Waste - Prathmesh**
+
+**3. See the whole -- Aashish **
+
 **4. Communication -- neville**
 
 This week was the midterm week and hence correct communication about project work was of utmost importance. It was decided that project related deliverables would be reviewed in the next week and there will be no face to face meeting during the week.
@@ -159,3 +165,4 @@ Our discussions continued on our **slack channel** where we discussed about the 
 
 Looking forward to the next week where we will be starting off with the complete application architecture design and building, deploying pieces that are ready.
 
+**5. Feedback -- Abhijitsinh**
