@@ -155,7 +155,7 @@ One member from our team designed the wireframe diagram based on the frontend co
 
 **2. Eliminate Waste - Prathmesh**
 
-**3. See the whole -- Aashish **
+**3. See the whole -- Aashish**
 
 **4. Communication -- neville**
 
@@ -166,3 +166,9 @@ Our discussions continued on our **slack channel** where we discussed about the 
 Looking forward to the next week where we will be starting off with the complete application architecture design and building, deploying pieces that are ready.
 
 **5. Feedback -- Abhijitsinh**
+This week we as a team decided to finalize our architecture, activity diagram and use case for the project. All the three are a vital part of a project and thus feedback for each is at most necessary.
+
+Architecture:  Deciding the architecture for project is the most important thing. A right architecture would help avoid many complexities and get system work smoothly. This could not be possible without the input from each team member. We as a team discussed how each individual was planning to implement their subdomain and based on that each of the team members gave there feedback on combining these approaches to form most suitable architecture for our project.
+
+Activity Diagram and use case: It was my(abhijitsinh chavda) duty to come up with the activity diagram and nevilles duty to come up with use case diagram for the system. we presented the diagram to the team and each team member gave there valuable  feedback on the necessary changes  required in the diagrams . These feedbacks will help us to optimize our diagrams and come up with the final version for the same. 
+
