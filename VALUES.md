@@ -166,6 +166,7 @@ Our discussions continued on our **slack channel** where we discussed about the 
 Looking forward to the next week where we will be starting off with the complete application architecture design and building, deploying pieces that are ready.
 
 **5. Feedback -- Abhijitsinh**
+
 This week we as a team decided to finalize our architecture, activity diagram and use case for the project. All the three are a vital part of a project and thus feedback for each is at most necessary.
 
 Architecture:  Deciding the architecture for project is the most important thing. A right architecture would help avoid many complexities and get system work smoothly. This could not be possible without the input from each team member. We as a team discussed how each individual was planning to implement their subdomain and based on that each of the team members gave there feedback on combining these approaches to form most suitable architecture for our project.
