@@ -125,7 +125,7 @@ In our 3rd week, we worked on analysing design of the front end components and i
 
 This week, the team analyed the UI wireframes to understand how our user interface will look like which give us a better idea when we will design the user interface. We tried to identify the complexities which would arise when we start with the coding and tried to analyze how we were going to challenge them so that project could runs smoothly. Thus  eliminatng waste by saving time which had been our moto from start.
 
-**3. See the whole -- Aashish **
+**3. See the whole - Aashish**
 
 This week, the team got together to analyze the use cases and agree on the layout and design to get a better picture of the workflow. We identified implementation complexities and decided on options that would assist in simplifying tasks throughout all modules, stressing on reuse and clean code. We discussed the inter-dependencies that may exist and how to tackle them to ensure that the project in its entirety is simplified. The team continues to be enthusiastic and motivated to complete the project. 
 
@@ -156,6 +156,10 @@ One member from our team designed the wireframe diagram based on the frontend co
 **2. Eliminate Waste - Prathmesh**
 
 **3. See the whole -- Aashish**
+
+This week, the team got together with a fair understanding of the architectural requirements of each sub-module. Each team member presented their respective submodule architectures. Decisions were then made to modify, add and eliminate certain features keeping in  mind that the final product needs to provide a seamless experience to the customers. The team continues to discuss and make decisions with the big picture in mind instead of focusing solely on the individual module. This approach has enabled us to come up with a concise architecture that we feel is suitable to achieve the defined goals for the product. We have decided to have our architecture validated by the professor to ensure we are on the correct path and can soon move to the implementation phase.
+
+Overall, the team continues to stay motivated and looks forward to the challenges in the implementation phase. We beileve that with our plans in place, we will be successful in delivering the product within the defined timelines.
 
 **4. Communication -- neville**
 
