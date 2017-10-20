@@ -177,3 +177,28 @@ Architecture:  Deciding the architecture for project is the most important thing
 
 Activity Diagram and use case: It was my(abhijitsinh chavda) duty to come up with the activity diagram and nevilles duty to come up with use case diagram for the system. we presented the diagram to the team and each team member gave there valuable  feedback on the necessary changes  required in the diagrams . These feedbacks will help us to optimize our diagrams and come up with the final version for the same. 
 
+
+## Week 5:
+
+**1. Simplicty -- Niral Koradia**
+
+**2. Eliminate Waste - Prathmesh**
+
+**3. See the whole -- Aashish**
+
+**4. Communication -- neville**
+
+This week we have met after a gap of one week due to our midterm commitments. We had a face-to-face meeting in an open setting where each of us discussed about our current position in the project implementation.
+
+We reviewed the deliverables and set up targets for the upcoming week. The entire project timeline was discussed and put into perspective. After our discussion we were clear about modules like User Management, Product Catalog, Shopping cart. The inter-communication between these modules was discussed too and the module owners are now in a  position to start implementing their respective modules.
+
+We also discussed the end to end architecture and proposed a couple of them best suited for our application. Deliverables were assigned to be completed by the coming week and a prototype for each module discussed above is expected in the coming weeks.
+
+As a usual practice the artefacts of the meeting such as minutes, reference docuementation and links were shared on our **slack channel**. In the next meeting we have decided to approach our project lead(Prof. Paul) for further advise.
+
+
+**5. Feedback -- Abhijitsinh**
+
+
+
+
