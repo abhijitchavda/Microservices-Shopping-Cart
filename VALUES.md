@@ -155,6 +155,8 @@ One member from our team designed the wireframe diagram based on the frontend co
 
 **2. Eliminate Waste - Prathmesh**
 
+This week, finalized the architecture of the shopping portal where each individual contributed. The architecture was designed by keeping aim of the project in mind and following the core values. During the discussions each members were given equal opportunity to participate and contribute so that in the end all the ideas could be aggregated. During the whole process our target was to stay focus and eliminate waste.
+
 **3. See the whole -- Aashish**
 
 This week, the team got together with a fair understanding of the architectural requirements of each sub-module. Each team member presented their respective submodule architectures. Decisions were then made to modify, add and eliminate certain features keeping in  mind that the final product needs to provide a seamless experience to the customers. The team continues to discuss and make decisions with the big picture in mind instead of focusing solely on the individual module. This approach has enabled us to come up with a concise architecture that we feel is suitable to achieve the defined goals for the product. We have decided to have our architecture validated by the professor to ensure we are on the correct path and can soon move to the implementation phase.
