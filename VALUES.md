@@ -152,6 +152,7 @@ One member from our team designed the wireframe diagram based on the frontend co
 ## Week 4:
 
 **1. Simplicty -- Niral Koradia**
+In the 4th week of project, we have the midterm week and hence it was decided that project related deliverables would be reviewed in the next week and there will be no face to face meeting during the week.
 
 **2. Eliminate Waste - Prathmesh**
 
@@ -183,6 +184,10 @@ Activity Diagram and use case: It was my(abhijitsinh chavda) duty to come up wit
 ## Week 5:
 
 **1. Simplicty -- Niral Koradia**
+
+In the 5th week, the team got together with the clear understanding of the architectural requirements of each sub-module. we have finalized our architecture and project related documents in very simple and efficient manner. Deciding project architecture is very important part of a project and we took utmost care to make arhitecture simple so that it will lead us to correct project outcome.
+
+User story: It was my responsibilty duty to come up with the user story document. I have presented the document to the team and each team member gave there valuable feedback on the necessary changes required in the document to make it simple and efficient.
 
 **2. Eliminate Waste - Prathmesh**
 
