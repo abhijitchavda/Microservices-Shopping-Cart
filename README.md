@@ -1,5 +1,6 @@
 # cmpe281-Ninja
 
+[Cumulative Flow Diagram/ Burndown chart](https://docs.google.com/a/sjsu.edu/spreadsheets/d/1KnVS7Ho-DlToUMpmdLaP6jSARa9GZJmGStukzRc008Y/edit?usp=sharing)
 
 #### Full documentation
 - Refer the /docs folder and wiki pages.
