@@ -1,0 +1,25 @@
+step 1
+
+mkdir replicaset1 replicaset2 replicaset3
+
+step 2
+
+mongod --replSet abhijit --logpath "rs1.log" --dbpath replicaset1 --port 27017 &
+mongod --replSet abhijit --logpath "rs2.log" --dbpath replicaset2 --port 27018 &
+mongod --replSet abhijit --logpath "rs3.log" --dbpath replicaset3 --port 27019 &
+
+step 3
+
+get inside a mongo instance using: 
+	mongo
+
+step 4
+
+rs.initiate({ _id : "abhijit", members: [ { _id : 0, host : "localhost:27017" },{ _id : 1, host : "localhost:27018" },{ _id : 3, host : "localhost:27019" } ] })
+
+step 5
+
+check the created replication sets and primary and secondary nodes 
+
+	rs.status()
+ 
