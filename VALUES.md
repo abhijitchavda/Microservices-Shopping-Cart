@@ -212,5 +212,14 @@ As a usual practice the artefacts of the meeting such as minutes, reference docu
 **5. Feedback -- Abhijitsinh**
 
 
+This week we as a team decided to start implementation for the project. Each one of us came up with some part of our modules. The starting is the most important phase in each module and thus establishing the understanding between team members via constant feedback is necessary.
+
+Feedback from professor:
+
+As we designed the architecture for the project, we thought it would be great for us to take professors feedback for the same. We went up to the professor and discussed the architecture. The feedback from the professor cleared our thoughts and helped us to idetify the errors in the architecture and make necessary changes to avoid it.
+
+Feedback from team members:
+
+As a team each one of us presented his work on respective modules. Each presentation was followed by discussion on wheather it is the best way to implement it or not. Based on the feedback each one of us noted the necesssary changes. These feedbacks played vital role for each member as this week we have started implementation of the project.
 
 
