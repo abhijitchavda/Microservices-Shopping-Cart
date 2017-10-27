@@ -19,6 +19,9 @@ In our shopping cart application it is important to have a centralized logging s
 
 
 #### Architecture
+
+![Log module arch](https://github.com/nguyensjsu/cmpe281-ninja/blob/master/Logging/Logging%20arch.png "Logging subsystem")
+
 ##### Using RabbitMQ
 
 ##### Using Kafka 
