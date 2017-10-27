@@ -1,1 +1,1 @@
-## NodeJS Express with MongoDB connectivity
+## Grocery shopping cart with NodeJS/Express/MongoDB
