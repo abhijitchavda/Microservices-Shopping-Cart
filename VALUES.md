@@ -193,6 +193,10 @@ User story: It was my responsibilty duty to come up with the user story document
 
 **3. See the whole -- Aashish**
 
+This week, the team meeting focused on the progress made in the respective modules. After having the architecture approved by the Professor, the goals for each module have become more clearer to the team. Team members discussed their idea of independent module implementations which fit the project goals. Implementations have begun and the team hopes to have basic operations available in the next couple of weeks. 
+
+Overall, the team is on track and continues to share and support each other in technical and motivational aspects. The big picture continues to be in the mind of individual developers, ensuring that every decision is made contributing towards the project success.
+
 **4. Communication -- neville**
 
 This week we have met after a gap of one week due to our midterm commitments. We had a face-to-face meeting in an open setting where each of us discussed about our current position in the project implementation.
