@@ -1,1 +1,1 @@
-Product catalog using NodeJS/Express/MongoDB 
+Product catalog
