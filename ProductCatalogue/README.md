@@ -1,1 +1,1 @@
-Readme for individual sub-modules
+Product catalog using NodeJS/Express/MongoDB 
