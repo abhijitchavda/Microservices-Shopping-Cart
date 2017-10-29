@@ -22,4 +22,8 @@ step 5
 check the created replication sets and primary and secondary nodes 
 
 	rs.status()
- 
+step 6
+connect to the primary node of the replicaset
+
+mongo --host abhijit/localhost:27017,localhost:27018,localhost:27019
+
