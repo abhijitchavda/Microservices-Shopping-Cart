@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	//"encoding/json"
+	"encoding/json"
 	"github.com/codegangsta/negroni"
 	//"github.com/streadway/amqp"
 	"github.com/gorilla/mux"
@@ -78,7 +78,24 @@ func paymentHandler(formatter *render.Render) http.HandlerFunc {
 	}
 }
 
-
+func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+		var data payment
+		err := json.NewDecoder(req.Body).Decode(&data)
+		if err!=nil{
+			panic(err)
+		}
+		session, err := mgo.Dial(mongodb_server)
+        if err != nil {
+                panic(err)
+        }
+        defer session.Close()
+        session.SetMode(mgo.Monotonic, true)
+        c := session.DB(mongodb_database).C(mongodb_collection)
+		c.Insert(data)
+		formatter.JSON(w, http.StatusOK, ord)
+	}
+}
 /*
 // API Gumball Machine Handler
 func gumballHandler(formatter *render.Render) http.HandlerFunc {
