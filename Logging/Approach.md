@@ -26,7 +26,7 @@ In our shopping cart application it is important to have a centralized logging s
 
 ##### Using Kafka 
 
-![Log module using Kafka cluster] (https://github.com/nguyensjsu/cmpe281-ninja/blob/master/Logging/Kafka_architecture_v0.1.png "Handling shopping cart events using Kafka")
+![Log module using Kafka cluster](https://github.com/nguyensjsu/cmpe281-ninja/blob/master/Logging/Kafka_architecture_v0.1.png "Handling application events using Kafka")
 
 In this architecture we use Kafka to handle the streams of data produced by our shopping cart application. Every node api will write to the respective topic and this stream of data can be consumed by consumers for further processing , analysis , archiving and reporting.
 
