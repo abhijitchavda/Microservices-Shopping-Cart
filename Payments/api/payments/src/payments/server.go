@@ -93,7 +93,7 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
         session.SetMode(mgo.Monotonic, true)
         c := session.DB(mongodb_database).C(mongodb_collection)
 		c.Insert(data)
-		formatter.JSON(w, http.StatusOK, ord)
+		formatter.JSON(w, http.StatusOK, data)
 	}
 }
 /*
