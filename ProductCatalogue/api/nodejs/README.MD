@@ -1,1 +1,1 @@
-Product Catalog backend implementation using nodejs/express/mongodb
+Product Catalog server implementation using nodejs/express/mongodb
