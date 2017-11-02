@@ -38,6 +38,14 @@ func NewServer() *negroni.Negroni {
 	return n
 }
 
+func init(){
+	//Code to create workers 
+	for i:=0; i<4; i++{
+		//go workerHandler()
+	}
+	//Create updater worker
+}
+
 // API Routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/payment/{order_id}", paymentHandler(formatter)).Methods("GET")
@@ -95,6 +103,11 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 		c.Insert(data)
 		formatter.JSON(w, http.StatusOK, data)
 	}
+}
+
+func workerHandler() {
+	//Worker tasks
+	//Write to channel
 }
 /*
 // API Gumball Machine Handler
