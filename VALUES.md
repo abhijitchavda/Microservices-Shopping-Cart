@@ -223,3 +223,27 @@ Feedback from team members:
 As a team each one of us presented his work on respective modules. Each presentation was followed by discussion on wheather it is the best way to implement it or not. Based on the feedback each one of us noted the necesssary changes. These feedbacks played vital role for each member as this week we have started implementation of the project.
 
 
+## Week 6:
+
+**1. Simplicty -- Niral Koradia**
+
+**2. Eliminate Waste - Prathmesh**
+
+**3. See the whole -- Aashish**
+
+**4. Communication -- neville**
+
+As we are heading closer to our application launch date, having crisp communication flowing between team members is of utmost importance. 
+
+During the meeting this week we discussed various ways for implementing and deploying our code. Every member came up with unique ideas for the same; feedback was provided to each of the ideas. The conversation was smooth and opinions were put forth and listened to by all the members.
+
+Of late our **slack channel** has been buzzing with activity and we have been using it as one of our major communication channels. We share use case specifications, architecture diagrams, ideas among other things on our slack channel.
+
+One can notice the energy and enthusiasm among the members based on our communication pattern and we look forward to a hectic but fruitful weeks in the future.
+
+
+
+**5. Feedback -- Abhijitsinh**
+
+
+
