@@ -1,1 +1,1 @@
-Product Catalog Forntend using Node.js, Express and Handlebars templating engine
+Product Catalog Frontend using Node.js, Express and Handlebars templating engine
