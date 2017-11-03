@@ -250,5 +250,10 @@ One can notice the energy and enthusiasm among the members based on our communic
 
 **5. Feedback -- Abhijitsinh**
 
+This week as the main motto of our team was to decide on the frontend technologies and discuss the how and what of the frontend. As the frontend is expected to be a team effort it requires ample amount of discussion and feedbacks from each team memeber.
+
+Feedback from team members
+
+This week we had to come up with the frontend how and whats. Keeping this in mind each of the team member came up with an approch that they consider would be best for the frontend. We as a team discussed each approach presented by the fellow team member. Each team member gave their feedback on the same. Based on the feedback of team members we decided the approach we will follow for developing the frontend. With the feedback and discussion for the frontend design it would have been very difficult to integeate the frontend developed by each team member for their respective modules as each of the module will have seperate backend but the web application would have a single frontend for all the services.
 
 
