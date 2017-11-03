@@ -227,6 +227,11 @@ As a team each one of us presented his work on respective modules. Each presenta
 
 **1. Simplicty -- Niral Koradia**
 
+In the 6th Week, As we are getting closer to our application launch date, we have started building the code. Every team member started building their individual part. 
+
+During the meeting this week we discussed various ways for implementing and deploying our code. Every member came up with unique ideas for the same; feedback was provided to each of the ideas. At the end of team meeting, we have agreed to follow the same coding pattern for each module to make the application in simple.
+
+
 **2. Eliminate Waste - Prathmesh**
 
 **3. See the whole -- Aashish**
