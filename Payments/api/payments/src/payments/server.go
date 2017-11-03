@@ -18,7 +18,6 @@ import (
 var mongodb_server = "localhost:27015"
 var mongodb_database = "test"
 var mongodb_collection = "payments"
-
 // RabbitMQ Config
 /*var rabbitmq_server = "rabbitmq"
 var rabbitmq_port = "5672"
@@ -40,9 +39,13 @@ func NewServer() *negroni.Negroni {
 
 func init(){
 	//Code to create workers 
-	for i:=0; i<4; i++{
+	fmt.Println("Started server...")
+	Payment_channel=make(chan payment,10)
+	go writerWorker()
+	//for i:=0; i<4; i++{
 		//go workerHandler()
-	}
+	//} 
+
 	//Create updater worker
 }
 
@@ -75,6 +78,7 @@ func paymentHandler(formatter *render.Render) http.HandlerFunc {
         c := session.DB(mongodb_database).C(mongodb_collection)
         params := mux.Vars(req)
         var order_id string = params["order_id"]
+        fmt.Println("Fetching order#: ",order_id)
         var result bson.M
 		err = c.Find(bson.M{"order_id" : order_id}).One(&result)
 		if err != nil {
@@ -93,6 +97,28 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 		if err!=nil{
 			panic(err)
 		}
+		/*session, err := mgo.Dial(mongodb_server)
+        if err != nil {
+                panic(err)
+        }
+        defer session.Close()
+        session.SetMode(mgo.Monotonic, true)
+        c := session.DB(mongodb_database).C(mongodb_collection)
+		c.Insert(data)*/
+		go workerHandler(data,Payment_channel)
+		formatter.JSON(w, http.StatusOK, data)
+	}
+}
+
+func workerHandler(data payment,Payment_channel chan payment) {
+	Payment_channel<-data
+	//Worker tasks
+	//Write to channel
+}
+func writerWorker(){
+
+	for i:=0;;i++{
+		payment_value:=<-Payment_channel
 		session, err := mgo.Dial(mongodb_server)
         if err != nil {
                 panic(err)
@@ -100,14 +126,9 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
         defer session.Close()
         session.SetMode(mgo.Monotonic, true)
         c := session.DB(mongodb_database).C(mongodb_collection)
-		c.Insert(data)
-		formatter.JSON(w, http.StatusOK, data)
-	}
-}
+		c.Insert(payment_value)
 
-func workerHandler() {
-	//Worker tasks
-	//Write to channel
+	}
 }
 /*
 // API Gumball Machine Handler

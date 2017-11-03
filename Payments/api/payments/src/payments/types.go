@@ -12,3 +12,4 @@ type payment struct{
 	Total 		float32 `bson:"total" json:"total"`
 	Timestamp 	string	`bson:"timestamp" json:"timestamp"`
 }
+var Payment_channel chan payment
