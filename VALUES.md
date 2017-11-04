@@ -190,6 +190,7 @@ In the 5th week, the team got together with the clear understanding of the archi
 User story: It was my responsibilty duty to come up with the user story document. I have presented the document to the team and each team member gave there valuable feedback on the necessary changes required in the document to make it simple and efficient.
 
 **2. Eliminate Waste - Prathmesh**
+
 This week, the team mainly discussed what front end framework we will be using for the online portal. The Architecture of our applicaction is finalized and now was the time to get our hands on code. The team actively took part in the discussion where each member presented their ideas. This week we shifted from kanban approach to scrum approch and we plan to meet daily for the stand up meeting just like the scrum process to discuss the progress this eliminating waste.
 
 **3. See the whole -- Aashish**
@@ -233,6 +234,10 @@ During the meeting this week we discussed various ways for implementing and depl
 
 
 **2. Eliminate Waste - Prathmesh**
+
+This week, our aim was to continue with the implementation part. We all are trying to create individual back-end services for the respective modules. We all have replicated out databases for partition recovery and we all meet 3 times in a week to discuss each others progress an challenges. We try to solve each others doubt so that we all are on the same page thus eliminating time wastage.
+
+The project is in line with the dates and the sprint cycles are being followed as expected. This is achieved as our team is following all the core values that were given.
 
 **3. See the whole -- Aashish**
 
