@@ -236,6 +236,8 @@ During the meeting this week we discussed various ways for implementing and depl
 
 **3. See the whole -- Aashish**
 
+This week, the meeting was primarily on the implementation aspect. Each team member provided an update on their module status and any dependecies that may exist during their deployment. The team discussed frontend integrations and look to be on track for the completion of the backend services for the project. Overall, the modules being developed are in line with the project goals. We collaborate on different issues to ensure efficient implementation of all the project modules. The team continues to hold the vision of the project in entireity, and continues to push towards executing the tasks successfully. 
+
 **4. Communication -- neville**
 
 As we are heading closer to our application launch date, having crisp communication flowing between team members is of utmost importance. 
