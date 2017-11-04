@@ -1,0 +1,15 @@
+{
+  "name": "kafkanode1",
+  "version": "1.0.0",
+  "description": "here we are building simple producer consumer using nodejs, kafka, avro.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "neville",
+  "license": "ISC",
+  "dependencies": {
+    "avsc": "^5.0.6",
+    "kafka-node": "^2.2.3"
+  }
+}
