@@ -1,3 +1,6 @@
-Here are the contents of the user sessions, the Login and the sign up page.
+# Here are the contents of the user sessions, the Login and the sign up page.
 
-I have created a database and connected it to node.js 
+## Week #6
+
+Changes are made for Sign Up page the Profile and the Sign in pages are empty, still working on them.
+
