@@ -15,3 +15,5 @@ type order struct{
 	Status 		string	`bson:"status" json:"status"`
 	Timestamp 	string	`bson:"timestamp" json:"timestamp"`
 }
+
+var Order_channel chan order

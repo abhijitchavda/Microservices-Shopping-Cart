@@ -38,10 +38,18 @@ func NewServer() *negroni.Negroni {
 	return n
 }
 
+func init(){
+	fmt.Println("Started server...")
+	Order_channel=make(chan orders,10)
+	for i:=0; i<4; i++{
+		go writerWorker()
+	} 
+}
+
 // API Routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
-	mx.HandleFunc("/order/{customer_id}", paymentHandler(formatter)).Methods("GET")
-	mx.HandleFunc("/order/", newPaymentHandler(formatter)).Methods("POST")
+	mx.HandleFunc("/order/{customer_id}", orderHandler(formatter)).Methods("GET")
+	mx.HandleFunc("/order/", newOrderHandler(formatter)).Methods("POST")
 }
 /*
 // Helper Functions
@@ -54,7 +62,7 @@ func failOnError(err error, msg string) {
 
 
 // API Ping Handler
-func paymentHandler(formatter *render.Render) http.HandlerFunc {
+func orderHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		//formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 1.0 alive!"})
 		// Connects to MongoDB
@@ -66,25 +74,45 @@ func paymentHandler(formatter *render.Render) http.HandlerFunc {
         session.SetMode(mgo.Monotonic, true)
         c := session.DB(mongodb_database).C(mongodb_collection)
         params := mux.Vars(req)
-        var order_id string = params["order_id"]
-        var result bson.M
-		err = c.Find(bson.M{"order_id" : order_id}).One(&result)
+        var customer_id string = params["customer_id"]
+        var result []bson.M
+		err = c.Find(bson.M{"customerId" : customer_id}).All(&result)
 		if err != nil {
                 log.Fatal(mux.Vars(req))
         }
-        fmt.Println("Payment made is:", result)
+        fmt.Println("Orders are:\n", result)
 		formatter.JSON(w, http.StatusOK, result)
 
 	}
 }
 
-func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
+func newOrderHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		var data order
 		err := json.NewDecoder(req.Body).Decode(&data)
 		if err!=nil{
 			panic(err)
 		}
+		go workerHandler(data,Order_channel)
+		/*session, err := mgo.Dial(mongodb_server)
+        if err != nil {
+                panic(err)
+        }
+        defer session.Close()
+        session.SetMode(mgo.Monotonic, true)
+        c := session.DB(mongodb_database).C(mongodb_collection)
+		c.Insert(data)*/
+		formatter.JSON(w, http.StatusOK, data)
+	}
+}
+func workerHandler(data order, Order_channel chan order){
+	Order_channel<-order
+}
+
+func writerWorker(){
+
+	for i:=0;;i++{
+		order_value:=<-Order_channel
 		session, err := mgo.Dial(mongodb_server)
         if err != nil {
                 panic(err)
@@ -92,8 +120,8 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
         defer session.Close()
         session.SetMode(mgo.Monotonic, true)
         c := session.DB(mongodb_database).C(mongodb_collection)
-		c.Insert(data)
-		formatter.JSON(w, http.StatusOK, data)
+		c.Insert(order_value)
+
 	}
 }
 /*
