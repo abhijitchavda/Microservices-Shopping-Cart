@@ -13,3 +13,4 @@ This page contains the links to all project meeting minutes of team **NINJA** as
 - [Meeting minutes from 18-October-2017](https://github.com/nguyensjsu/cmpe281-ninja/wiki/moM_10-18-2017)
 - [Meeting minutes from 25-October-2017](https://github.com/nguyensjsu/cmpe281-ninja/wiki/moM_10-25-2017)
 - [Meeting minutes from 01-November-2017](https://github.com/nguyensjsu/cmpe281-ninja/wiki/moM_11-01-2017)
+- [Meeting minutes from 08-November-2017](https://github.com/nguyensjsu/cmpe281-ninja/wiki/moM_11-08-2017)
