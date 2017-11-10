@@ -264,3 +264,14 @@ Feedback from team members
 This week we had to come up with the frontend how and whats. Keeping this in mind each of the team member came up with an approch that they consider would be best for the frontend. We as a team discussed each approach presented by the fellow team member. Each team member gave their feedback on the same. Based on the feedback of team members we decided the approach we will follow for developing the frontend. With the feedback and discussion for the frontend design it would have been very difficult to integeate the frontend developed by each team member for their respective modules as each of the module will have seperate backend but the web application would have a single frontend for all the services.
 
 
+## Week 7:
+**1. Simplicty -- Niral Koradia**
+
+**2. Eliminate Waste - Prathmesh**
+
+**3. See the whole -- Aashish**
+
+**4. Communication -- neville**
+
+**5. Feedback -- Abhijitsinh**
+
