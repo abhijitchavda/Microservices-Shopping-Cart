@@ -274,6 +274,7 @@ This week we had to come up with the frontend how and whats. Keeping this in min
 **4. Communication -- neville**
 
 **5. Feedback -- Abhijitsinh**
+
 This week we all had a new project to contribute to as a team. As a part of hackathon we had to come up with a bitly prototype. Because of this new project it was very necessary to maintain the work for ninja grocery parallel to the hackathon project. The main moto of this week was to come up with the hackathon architecture and also keep the development flow for ninja grocery at steady pace.
 
 Feedback from the team
