@@ -274,4 +274,10 @@ This week we had to come up with the frontend how and whats. Keeping this in min
 **4. Communication -- neville**
 
 **5. Feedback -- Abhijitsinh**
+This week we all had a new project to contribute to as a team. As a part of hackathon we had to come up with a bitly prototype. Because of this new project it was very necessary to maintain the work for ninja grocery parallel to the hackathon project. The main moto of this week was to come up with the hackathon architecture and also keep the development flow for ninja grocery at steady pace.
 
+Feedback from the team
+
+We as a team decided to come up with the architecture and technologies that we will use as a part of hackathon. With this we also had to work on our respective modules backend and frontend.
+
+The major issue for ninja grocery was to finalize the approach that we will be using to tackle the group share functionality in shopping cart. For this problem we as a team came up with multiple approaches. As it was a hectic week with two projects to focus on, it was very neccessary to take multiple feedbacks for each members and finalize the approach for group share functionality. We as a team came up with multiple approaches for group share functionality. Each approach was discussed throughly and received feedback from each one of team memeber. We finaly decided the approach that we will follow based on the feedbacks of team members.
