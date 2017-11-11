@@ -271,6 +271,8 @@ This week we had to come up with the frontend how and whats. Keeping this in min
 
 **3. See the whole -- Aashish**
 
+This week, our team meeting consisted of two components. The first revolved around the primary shopping cart project. The team provided an update on the progress of their respective submodules. The challenge around concurreny in the shopping cart was discussed with each member providing their strategy to accomplish this task. The complexity of each method considering the impact on modules such as product catalogue and sessions was considered to arrive at a suitable decision. The second part focused on the hackathon problem. The team now has an architectural solution in place to accomplish the bitly service task. Overall, the team continues to strive to accomplish both tasks in the speculated timeframe with a timeline in place to complete each service in time so that dependencies are not stalled. From a project perspective, we continue to be on track to a successful completion.
+
 **4. Communication -- neville**
 
 **5. Feedback -- Abhijitsinh**
