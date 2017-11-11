@@ -264,3 +264,25 @@ Feedback from team members
 This week we had to come up with the frontend how and whats. Keeping this in mind each of the team member came up with an approch that they consider would be best for the frontend. We as a team discussed each approach presented by the fellow team member. Each team member gave their feedback on the same. Based on the feedback of team members we decided the approach we will follow for developing the frontend. With the feedback and discussion for the frontend design it would have been very difficult to integeate the frontend developed by each team member for their respective modules as each of the module will have seperate backend but the web application would have a single frontend for all the services.
 
 
+## Week 7:
+**1. Simplicty -- Niral Koradia**
+
+**2. Eliminate Waste - Prathmesh**
+
+This week, our agenda was to complete the backend and the front end part of individual submodules. So that we can start with the intergration. We also decided to meet next week and sit for prolong hours to complelte intergration as its the most important part. While sitting together we will be eliminating wastage of time. We also descussed about our statergy for the hackthon. We alwasys try to keep all the core values in our mind so that the best outcome could come.
+
+**3. See the whole -- Aashish**
+
+This week, our team meeting consisted of two components. The first revolved around the primary shopping cart project. The team provided an update on the progress of their respective submodules. The challenge around concurreny in the shopping cart was discussed with each member providing their strategy to accomplish this task. The complexity of each method considering the impact on modules such as product catalogue and sessions was considered to arrive at a suitable decision. The second part focused on the hackathon problem. The team now has an architectural solution in place to accomplish the bitly service task. Overall, the team continues to strive to accomplish both tasks in the speculated timeframe with a timeline in place to complete each service in time so that dependencies are not stalled. From a project perspective, we continue to be on track to a successful completion.
+
+**4. Communication -- neville**
+
+**5. Feedback -- Abhijitsinh**
+
+This week we all had a new project to contribute to as a team. As a part of hackathon we had to come up with a bitly prototype. Because of this new project it was very necessary to maintain the work for ninja grocery parallel to the hackathon project. The main moto of this week was to come up with the hackathon architecture and also keep the development flow for ninja grocery at steady pace.
+
+Feedback from the team
+
+We as a team decided to come up with the architecture and technologies that we will use as a part of hackathon. With this we also had to work on our respective modules backend and frontend.
+
+The major issue for ninja grocery was to finalize the approach that we will be using to tackle the group share functionality in shopping cart. For this problem we as a team came up with multiple approaches. As it was a hectic week with two projects to focus on, it was very neccessary to take multiple feedbacks for each members and finalize the approach for group share functionality. We as a team came up with multiple approaches for group share functionality. Each approach was discussed throughly and received feedback from each one of team memeber. We finaly decided the approach that we will follow based on the feedbacks of team members.
