@@ -269,6 +269,8 @@ This week we had to come up with the frontend how and whats. Keeping this in min
 
 **2. Eliminate Waste - Prathmesh**
 
+This week, our agenda was to complete the backend and the front end part of individual submodules. So that we can start with the intergration. We also decided to meet next week and sit for prolong hours to complelte intergration as its the most important part. While sitting together we will be eliminating wastage of time. We also descussed about our statergy for the hackthon. We alwasys try to keep all the core values in our mind so that the best outcome could come.
+
 **3. See the whole -- Aashish**
 
 This week, our team meeting consisted of two components. The first revolved around the primary shopping cart project. The team provided an update on the progress of their respective submodules. The challenge around concurreny in the shopping cart was discussed with each member providing their strategy to accomplish this task. The complexity of each method considering the impact on modules such as product catalogue and sessions was considered to arrive at a suitable decision. The second part focused on the hackathon problem. The team now has an architectural solution in place to accomplish the bitly service task. Overall, the team continues to strive to accomplish both tasks in the speculated timeframe with a timeline in place to complete each service in time so that dependencies are not stalled. From a project perspective, we continue to be on track to a successful completion.
