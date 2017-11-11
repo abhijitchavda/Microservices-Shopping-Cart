@@ -1,8 +1,33 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-a {
-  color: #00B7FF;
+body {
+    background-image: url('https://cdn.modernfarmer.com/wp-content/uploads/2014/11/shoppinghero.jpg');
+    background-attachment: fixed;
+}
+
+.thumbnail{
+	max-width: 300px;
+}
+
+.thumbnail img{
+	max-height: 150px;
+	max-width: 30px;
+}
+
+.thumbnail .description{
+	color: gray;
+}
+
+
+.price{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.dropdown{
+	display: inline-block;
 }
