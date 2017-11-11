@@ -267,6 +267,8 @@ This week we had to come up with the frontend how and whats. Keeping this in min
 ## Week 7:
 **1. Simplicty -- Niral Koradia**
 
+This week we started building shopping-cart project using nodejs. To make it simple, we have decided to work together and commit to the Github on master branch only and merge the code changes in front of all the team members and commit it. For next week, we have hackathon, so we need to come up with a bitly prototype. Because of this new project, we need to maintain the balance work for ninja project as well as for the hackathon project. To make it simple, we have divide the task amoung the team and work the bear minimum requirement for the project as well as on the hackathon. The main moto of this week was to come up with the hackathon architecture and also keep the development flow for ninja grocery at steady pace.
+
 **2. Eliminate Waste - Prathmesh**
 
 This week, our agenda was to complete the backend and the front end part of individual submodules. So that we can start with the intergration. We also decided to meet next week and sit for prolong hours to complelte intergration as its the most important part. While sitting together we will be eliminating wastage of time. We also descussed about our statergy for the hackthon. We alwasys try to keep all the core values in our mind so that the best outcome could come.
