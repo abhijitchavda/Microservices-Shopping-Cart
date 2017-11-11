@@ -14,6 +14,14 @@ import (
     "gopkg.in/mgo.v2/bson"
 )
 
+
+var (
+    Trace   *log.Logger
+    Info    *log.Logger
+    Warning *log.Logger
+    Error   *log.Logger
+)
+
 // MongoDB Config
 var mongodb_server = "localhost:27015"
 var mongodb_database = "test"
@@ -68,6 +76,7 @@ func orderHandler(formatter *render.Render) http.HandlerFunc {
 		// Connects to MongoDB
 		session, err := mgo.Dial(mongodb_server)
         if err != nil {
+        	Error.Println("Orders API - Unable to connect to MongoDB during read operation")
                 panic(err)
         }
         defer session.Close()
@@ -91,6 +100,7 @@ func newOrderHandler(formatter *render.Render) http.HandlerFunc {
 		var data order
 		err := json.NewDecoder(req.Body).Decode(&data)
 		if err!=nil{
+			Error.Println("Orders API - Unable to obtain request body")
 			panic(err)
 		}
 		go workerHandler(data,Order_channel)
@@ -115,6 +125,7 @@ func writerWorker(){
 		order_value:=<-Order_channel
 		session, err := mgo.Dial(mongodb_server)
         if err != nil {
+        	Error.Println("Orders API - Unable to connect to MongoDB during write operation")
                 panic(err)
         }
         defer session.Close()
