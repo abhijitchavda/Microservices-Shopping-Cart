@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h2.page-header Login
+  p Registered users can login.
+  form(method='POST', action='/users/login')
+    .form-group
+      label Username
+      input.form-control(name='username', type='text',
+      placeholder='Enter Username')
+    .form-group
+      label Password
+      input.form-control(name='password', type='password',
+      placeholder='Enter Password')
+    input.btn.btn-primary(type='submit', name='submit', value='Login')
