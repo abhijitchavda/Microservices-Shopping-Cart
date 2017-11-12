@@ -8,6 +8,7 @@ Members can use this code for testing and reference to update their modules acco
 
 1. install nodejs
 2. install npm
+3. install mongodb.
 3. install kafka.
 3. download folder and execute the app on local machine.
 4. The app allows to Register New user/ Login / Logout existing user.
