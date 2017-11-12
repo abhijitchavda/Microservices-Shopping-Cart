@@ -20,3 +20,8 @@ Members can use this code for testing and reference to update their modules acco
 1. User activity is captured in the Kafka topic.
 2. This capture is realtime and can be used for further analysis.
 3. Multiple topics can be setup to log various kinds of data.
+
+
+### TODO.
+[ ] Setup a distributed event stream process for log data.
+[ ] Setup and demonstrate partition failure.
