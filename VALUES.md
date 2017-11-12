@@ -265,6 +265,7 @@ This week we had to come up with the frontend how and whats. Keeping this in min
 
 
 ## Week 7:
+
 **1. Simplicty -- Niral Koradia**
 
 This week we started building shopping-cart project using nodejs. To make it simple, we have decided to work together and commit to the Github on master branch only and merge the code changes in front of all the team members and commit it. For next week, we have hackathon, so we need to come up with a bitly prototype. Because of this new project, we need to maintain the balance work for ninja project as well as for the hackathon project. To make it simple, we have divide the task amoung the team and work the bear minimum requirement for the project as well as on the hackathon. The main moto of this week was to come up with the hackathon architecture and also keep the development flow for ninja grocery at steady pace.
@@ -278,6 +279,12 @@ This week, our agenda was to complete the backend and the front end part of indi
 This week, our team meeting consisted of two components. The first revolved around the primary shopping cart project. The team provided an update on the progress of their respective submodules. The challenge around concurreny in the shopping cart was discussed with each member providing their strategy to accomplish this task. The complexity of each method considering the impact on modules such as product catalogue and sessions was considered to arrive at a suitable decision. The second part focused on the hackathon problem. The team now has an architectural solution in place to accomplish the bitly service task. Overall, the team continues to strive to accomplish both tasks in the speculated timeframe with a timeline in place to complete each service in time so that dependencies are not stalled. From a project perspective, we continue to be on track to a successful completion.
 
 **4. Communication -- neville**
+
+As the team is heading into launch phase it is imperative that all team communications be handled clear and coincise way so that we all avoid errors due to miscommunication or the lack of it.
+
+To be more connected during our launch phase we have decided to have a team-codeathon; this will involve spending 48 hrs together completing the pending coding bits of the application. The team members have agreed to this idea and the next week is selected as the codeathon week. The energy around task completion and project demo preparation is great and we will keep up the same pace till our presentation.
+
+Our **slack** channel conversations have been very high this week. There was certain confusion around a module but that was cleared during a *zoom* conference call during the middle of the week. As we enter the last stretch , the team understands that we need to reach out to each other either for asking help or to help out and the best way to do that is via the many forms of communication we have been using as a team.
 
 **5. Feedback -- Abhijitsinh**
 
