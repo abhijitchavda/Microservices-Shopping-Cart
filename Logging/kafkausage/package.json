@@ -1,0 +1,30 @@
+{
+  "name": "nodeauth",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "~1.17.1",
+    "connect-flash": "*",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "express-messages": "*",
+    "express-session": "^1.15.6",
+    "express-validator": "*",
+    "jade": "~1.11.0",
+    "mongodb": "*",
+    "mongoose": "^4.10.8",
+    "morgan": "~1.8.1",
+    "multer": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "avsc": "^5.0.6",
+    "kafka-node": "^2.2.3",
+    "serve-favicon": "~2.4.2"
+  }
+}
