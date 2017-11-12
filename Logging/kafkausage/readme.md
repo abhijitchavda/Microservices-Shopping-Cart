@@ -23,5 +23,6 @@ Members can use this code for testing and reference to update their modules acco
 
 
 ### TODO.
-[ ] Setup a distributed event stream process for log data.
-[ ] Setup and demonstrate partition failure.
+
+- [ ] Setup a distributed event stream process for log data.
+- [ ] Setup and demonstrate partition failure.
