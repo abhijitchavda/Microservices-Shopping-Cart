@@ -1,15 +1,16 @@
 {
-  "name": "kafkanode1",
+  "name": "cachingtechnique",
   "version": "1.0.0",
-  "description": "here we are building simple producer consumer using nodejs, kafka, avro.",
-  "main": "index.js",
+  "description": "practice caching technique.",
+  "main": "sampleOne.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "neville",
+  "author": "nev",
   "license": "ISC",
   "dependencies": {
-    "avsc": "^5.0.6",
-    "kafka-node": "^2.2.3"
+    "express": "^4.16.2",
+    "redis": "^2.8.0",
+    "superagent": "^3.8.1"
   }
 }
