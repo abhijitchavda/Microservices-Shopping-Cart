@@ -14,6 +14,7 @@ type order struct{
 	Total 		float32 `bson:"total" json:"total"`
 	Status 		string	`bson:"status" json:"status"`
 	Timestamp 	string	`bson:"timestamp" json:"timestamp"`
+	DeliveryAddress string `bson:"deliveryAddress" json:"deliveryAddress"`
 }
 
 var Order_channel chan order
