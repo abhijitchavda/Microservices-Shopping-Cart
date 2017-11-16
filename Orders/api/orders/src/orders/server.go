@@ -24,8 +24,8 @@ var (
 
 // MongoDB Config
 var mongodb_server = "localhost:27015"
-var mongodb_database = "test"
-var mongodb_collection = "orders"
+var mongodb_database = "orders"
+var mongodb_collection = "order"
 
 // RabbitMQ Config
 /*var rabbitmq_server = "rabbitmq"
@@ -34,7 +34,7 @@ var rabbitmq_queue = "gumball"
 var rabbitmq_user = "guest"
 var rabbitmq_pass = "guest"*/
 
-// NewServer configures and returns a Server.
+// This function configures and returns a Server
 func NewServer() *negroni.Negroni {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
@@ -46,19 +46,24 @@ func NewServer() *negroni.Negroni {
 	return n
 }
 
+// This function preforms initialization tasks
 func init(){
+
 	fmt.Println("Started server...")
-	Order_channel=make(chan orders,10)
+	// Create channel to hold order placed
+	Order_channel=make(chan order,10)
+	// Create writer workers to write to MongoDB
 	for i:=0; i<4; i++{
 		go writerWorker()
 	} 
 }
 
-// API Routes
+// This function specifies the API Routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/order/{customer_id}", orderHandler(formatter)).Methods("GET")
 	mx.HandleFunc("/order/", newOrderHandler(formatter)).Methods("POST")
 }
+
 /*
 // Helper Functions
 func failOnError(err error, msg string) {
@@ -69,7 +74,7 @@ func failOnError(err error, msg string) {
 }*/
 
 
-// API Ping Handler
+// This function handles the GET request
 func orderHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		//formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 1.0 alive!"})
@@ -84,6 +89,7 @@ func orderHandler(formatter *render.Render) http.HandlerFunc {
         c := session.DB(mongodb_database).C(mongodb_collection)
         params := mux.Vars(req)
         var customer_id string = params["customer_id"]
+        fmt.Println(customer_id)
         var result []bson.M
 		err = c.Find(bson.M{"customerId" : customer_id}).All(&result)
 		if err != nil {
@@ -95,6 +101,8 @@ func orderHandler(formatter *render.Render) http.HandlerFunc {
 	}
 }
 
+
+// This function handles the POST request
 func newOrderHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		var data order
@@ -116,7 +124,7 @@ func newOrderHandler(formatter *render.Render) http.HandlerFunc {
 	}
 }
 func workerHandler(data order, Order_channel chan order){
-	Order_channel<-order
+	Order_channel<-data
 }
 
 func writerWorker(){

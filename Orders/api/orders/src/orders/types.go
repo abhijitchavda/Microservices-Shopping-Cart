@@ -10,7 +10,7 @@ type order struct{
 	Id         bson.ObjectId `bson:"_id,omitempty" json:"id"`
 	OrderId		string		`bson:"orderId" json:"orderId"`
 	CustomerId 	string 	`bson:"customerId" json:"customerId"`
-	ItemDetails map[string]map[string]int `bson:"ItemDetails" json:"ItemDetails"`
+	ItemDetails map[string]map[string]float32 `bson:"ItemDetails" json:"ItemDetails"`
 	Total 		float32 `bson:"total" json:"total"`
 	Status 		string	`bson:"status" json:"status"`
 	Timestamp 	string	`bson:"timestamp" json:"timestamp"`
