@@ -309,6 +309,8 @@ This week, we integrated all our individual functionalities which was a big chal
 
 **3. See the whole -- Aashish**
 
+This week the team got together and integrated the respective modules. Unit testing for each module has been completed. Integration testing is now in the final stage. At each step of the way, the team has kept in mind the wholistic view of the project ensuring that any change made has minimal impact on other modules. The values of simplicity, elimination of waste, timely feedback and effective communication, along with this wholistic project view have led to a successful implementation.
+
 **4. Communication -- neville**
 
 The team has spent considerable amount of time in joint meetings in the week 8. All members of the have been equally communicative and vocal about building the best application. A second code sprint has been planned for the weekend where the team members will complete the testing of their respective modules.
