@@ -295,3 +295,21 @@ Feedback from the team
 We as a team decided to come up with the architecture and technologies that we will use as a part of hackathon. With this we also had to work on our respective modules backend and frontend.
 
 The major issue for ninja grocery was to finalize the approach that we will be using to tackle the group share functionality in shopping cart. For this problem we as a team came up with multiple approaches. As it was a hectic week with two projects to focus on, it was very neccessary to take multiple feedbacks for each members and finalize the approach for group share functionality. We as a team came up with multiple approaches for group share functionality. Each approach was discussed throughly and received feedback from each one of team memeber. We finaly decided the approach that we will follow based on the feedbacks of team members.
+
+## Week 8:
+
+**1. Simplicty -- Niral Koradia**
+
+**2. Eliminate Waste - Prathmesh**
+
+**3. See the whole -- Aashish**
+
+**4. Communication -- neville**
+
+The team has spent considerable amount of time in joint meetings in the week 8. All members of the have been equally communicative and vocal about building the best application. A second code sprint has been planned for the weekend where the team members will complete the testing of their respective modules.
+
+Our **slack channel** is buzzing with activity and the team have also collaborated on the upcoming hackathon. It is very evident that the team communication has grown over time and it seems to be in a positive light. The team will be meeting over the weekend for multiple meeetings and the members have booked the meeting rooms in advance.
+
+
+**5. Feedback -- Abhijitsinh**
+
