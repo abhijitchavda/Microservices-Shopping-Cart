@@ -70,4 +70,8 @@ console.log(it);
 response.json({"status":false});
 });
 
+router.get("/payment",function(request, response, next){
+console.log("Success");
+});
+
 module.exports = router;
