@@ -300,6 +300,9 @@ The major issue for ninja grocery was to finalize the approach that we will be u
 
 **1. Simplicty -- Niral Koradia**
 
+This week we started integrated shopping-cart project. To make it simple, we have decided to pick each individual's module first and merge the code changes in front of all the team members and resolve the conflicts. We started integrating the code with Login/Signup module first, then product catalogue, Shopping cart and payment modules. We also worked for Hackathon implemenatation. Integration went smoothly and each team member enjoyed working the project. Each Member like the simplicity we followed in the project implemenatation.
+
+
 **2. Eliminate Waste - Prathmesh**
 
 This week, we integrated all our individual functionalities which was a big challenge in itself. We have started with Unit testing and the functional testing. Everyone must test other module so that errors can be found and corrected timely. Our team have successfully completed the project and are now focusing on testing and minor updated for stabilization. Our team always kept all the core values in mind while focusing on work.
