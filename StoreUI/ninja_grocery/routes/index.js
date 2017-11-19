@@ -70,4 +70,8 @@ router.post("/addtocart/:id",function(request, response, next){
     response.json({"status":false});
 });
 
+router.get("/payment",function(request, response, next){
+console.log("Success");
+});
+
 module.exports = router;
