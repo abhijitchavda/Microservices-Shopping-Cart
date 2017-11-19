@@ -59,7 +59,8 @@ func init(){
 // API Routes
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/payment/{order_id}", paymentHandler(formatter)).Methods("GET")
-	mx.HandleFunc("/payment/", newPaymentHandler(formatter)).Methods("POST")
+	mx.HandleFunc("/payment", newPaymentHandler(formatter)).Methods("POST")
+	mx.HandleFunc("/ping", ping(formatter)).Methods("GET")
 }
 /*
 // Helper Functions
@@ -72,6 +73,14 @@ func failOnError(err error, msg string) {
 
 
 // API Ping Handler
+func ping(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+		fmt.Println("Ping - Payment API running");
+		result := "Payment API - Running"
+		formatter.JSON(w, http.StatusOK, result);
+	}
+}
+
 func paymentHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		//formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 1.0 alive!"})
@@ -117,6 +126,20 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 		go workerHandler(data,Payment_channel)
 		formatter.JSON(w, http.StatusOK, data)
 	}
+
+	/*
+
+	Sample payment write:
+
+	URL: http://localhost:3000/payment
+
+	Object:
+
+	{"OrderId" : "1234",	
+	"CustomerId" : "Sam", 	
+	"Total" : 32.5, 
+	"Timestamp" : "20170202"}
+	*/
 }
 
 func workerHandler(data payment,Payment_channel chan payment) {

@@ -12,6 +12,7 @@ import (
 	//"github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2"
     "gopkg.in/mgo.v2/bson"
+    "time"
 )
 
 
@@ -45,6 +46,51 @@ func NewServer() *negroni.Negroni {
 	n.UseHandler(mx)
 	return n
 }
+// This funtion checks the database and updates the order status every 30 seconds
+func orderProcessor(){
+	var status string
+	for;;{
+		// Connects to MongoDB
+		session, err := mgo.Dial(mongodb_server)
+        if err != nil {
+        	Error.Println("Orders API - orderProcessing - Unable to connect to MongoDB during read operation")
+                panic(err)
+        }
+        defer session.Close()
+        session.SetMode(mgo.Monotonic, true)
+        c := session.DB(mongodb_database).C(mongodb_collection)
+        var result []bson.M
+		err = c.Find(nil).All(&result)
+		if err != nil {
+                log.Fatal("Orders API - orderProcessing - Error reading data from MongoDB")
+        }
+        for i:=0;i<len(result);i++{
+        	if(result[i]["status"] != 'Delivered'){
+        	//fmt.Println("\n\nOrder ID being updated is:\n", result[i]["orderId"])
+        	switch result[i]["status"] {
+        	case "Order Placed": status = "Order Processed"
+        	case "Order Processed": status = "Shipped"
+        	case "Shipped": status = "Delivered"
+        	}
+
+        	//fmt.Println("Order ID: ",result[i]["orderId"]," Updated Status: ",result[i]["status"],"\n\n")
+        	// Update MongoDB with the new status
+        	//fmt.Println(result[i])
+        	query := bson.M{"orderId" : result[i]["orderId"]}
+        	change := bson.M{"$set": bson.M{ "status" : status}}
+        	err = c.Update(query, change)
+        	timer1 := time.NewTimer(time.Second * 5)
+			<-timer1.C
+		}
+
+        }
+        
+		//formatter.JSON(w, http.StatusOK, result)
+		
+
+	}
+
+}
 
 // This function preforms initialization tasks
 func init(){
@@ -56,6 +102,7 @@ func init(){
 	for i:=0; i<4; i++{
 		go writerWorker()
 	} 
+	go orderProcessor()
 }
 
 // This function specifies the API Routes
