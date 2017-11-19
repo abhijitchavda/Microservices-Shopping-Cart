@@ -9,12 +9,26 @@ The following fields will be stored as a part of the logs.
 
 
 There will be a separate collection based on the modules in the application. For example:
-the payments module will log the following data into the payments collection.
-  >{
-      "_id" : ObjectId("5a1124903d0c6727aa42d3a2"),
-      "timestamp" : ISODate("2017-11-19T06:28:32.257Z"),
-      "userid" : "ninja",
-      "orderid" : "N12190434",
-      "message" : "Error info",
-      "metadata" : {}
-  }
+the payments module will log the following data into the *payments* collection.
+ > {
+        "_id" : ObjectId("5a1124903d0c6727aa42d3a2"),
+        "timestamp" : ISODate("2017-11-19T06:28:32.257Z"),
+        "userid" : "ninja",
+        "orderid" : "N12190434",
+        "message" : "Error info",
+        "metadata" : {}
+    }
+
+
+Similarly , the user management module will log the following data into the *useractivity* collection.
+
+ > {
+        "_id" : ObjectId("5a1124903d0c6727aa42d3a2"),
+        "timestamp" : ISODate("2017-11-19T06:28:32.257Z"),
+        "userid" : "ninja",
+        "sessionid" : "A12190434",
+        "activity_type" : "login"
+        "requestip" : "10.27.39.19"
+        "message" : "User ninja has logged in.",
+        "metadata" : {}
+    }
