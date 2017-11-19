@@ -295,3 +295,34 @@ Feedback from the team
 We as a team decided to come up with the architecture and technologies that we will use as a part of hackathon. With this we also had to work on our respective modules backend and frontend.
 
 The major issue for ninja grocery was to finalize the approach that we will be using to tackle the group share functionality in shopping cart. For this problem we as a team came up with multiple approaches. As it was a hectic week with two projects to focus on, it was very neccessary to take multiple feedbacks for each members and finalize the approach for group share functionality. We as a team came up with multiple approaches for group share functionality. Each approach was discussed throughly and received feedback from each one of team memeber. We finaly decided the approach that we will follow based on the feedbacks of team members.
+
+## Week 8:
+
+**1. Simplicty -- Niral Koradia**
+
+This week we started integrated shopping-cart project. To make it simple, we have decided to pick each individual's module first and merge the code changes in front of all the team members and resolve the conflicts. We started integrating the code with Login/Signup module first, then product catalogue, Shopping cart and payment modules. We also worked for Hackathon implemenatation. Integration went smoothly and each team member enjoyed working the project. Each Member like the simplicity we followed in the project implemenatation.
+
+
+**2. Eliminate Waste - Prathmesh**
+
+This week, we integrated all our individual functionalities which was a big challenge in itself. We have started with Unit testing and the functional testing. Everyone must test other module so that errors can be found and corrected timely. Our team have successfully completed the project and are now focusing on testing and minor updated for stabilization. Our team always kept all the core values in mind while focusing on work.
+
+**3. See the whole -- Aashish**
+
+This week the team got together and integrated the respective modules. Unit testing for each module has been completed. Integration testing is now in the final stage. At each step of the way, the team has kept in mind the wholistic view of the project ensuring that any change made has minimal impact on other modules. The values of simplicity, elimination of waste, timely feedback and effective communication, along with this wholistic project view have led to a successful implementation.
+
+**4. Communication -- neville**
+
+The team has spent considerable amount of time in joint meetings in the week 8. All members of the have been equally communicative and vocal about building the best application. A second code sprint has been planned for the weekend where the team members will complete the testing of their respective modules.
+
+Our **slack channel** is buzzing with activity and the team have also collaborated on the upcoming hackathon. It is very evident that the team communication has grown over time and it seems to be in a positive light. The team will be meeting over the weekend for multiple meeetings and the members have booked the meeting rooms in advance.
+
+
+**5. Feedback -- Abhijitsinh**
+
+This week is the last week. As it is almost the end of the projet the feedback between each team member for their respective module played a very important part.
+
+Each Team member has finished their respective module with their server and mongodb replicaset locally. Each team member has constributed to the UI development and integration for each modules UI. The major challenge was to integrate each modules and see that interconnection between each modules work fine. Feedback played a major role in integration of modules. Each member provided their feedback on the interconnection and this helped us to successfully integerate the project.
+
+Feedback has always helped the team to avoid major conflicts and stay right on track. The importance of feedback is realised by each team member during the project and has been followed throughly.
+

@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient
 			, assert = require('assert');
-var murl = "mongodb://localhost:27017,localhost:27018,localhost:27019/catalog?replicaSet=abhijit";
+var murl = "mongodb://13.59.15.159:27017,13.59.134.250:27017,52.14.77.142:27017/catalog?replicaSet=abhijit";
 var http = require("http");
 var constantm=require('./constants');
 var url = require('url');
@@ -25,7 +25,7 @@ app.get('/mostfav', function (request, response, next) {
     		//console.dir('http://'+ip.address()+':3000/mostfav');
 console.dir('http://'+request.ip+':3000/mostfav');
     		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+    			result[i].img="http://"+constantm.ip+":"+constantm.port+result[i].img;
     		}
     		response.json(result);
     		response.end();
@@ -42,7 +42,7 @@ app.get('/catagory/:catagory', function (request, response, next) {
   			db.collection("catalogitems").find({"catagory":cat}).toArray(function(err, result) {
     		if (err) throw err;
     		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+    			result[i].img="http://"+constantm.ip+":"+constantm.port+result[i].img;
     		}
     		response.json(result);
     		response.end();
@@ -65,7 +65,7 @@ app.get('/catagory/:catagory/sort/:variant/:type', function (request, response, 
   				db.collection("catalogitems").find({"catagory":cat}).sort(bsort).toArray(function(err, result) {
     			if (err) throw err;
     			for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+    			result[i].img="http://"+constantm.ip+":"+constantm.port+result[i].img;
     		}
     			response.json(result);
     			response.end();
@@ -76,7 +76,7 @@ app.get('/catagory/:catagory/sort/:variant/:type', function (request, response, 
   				db.collection("catalogitems").find({"catagory":cat}).sort(asort).toArray(function(err, result) {
     			if (err) throw err;
     			for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+    			result[i].img="http://"+constantm.ip+":"+constantm.port+result[i].img;
     		}
     			response.json(result);
     			response.end();
@@ -100,7 +100,7 @@ app.get('/catagory/:catagory/filter/price', function (request, response, next) {
 			db.collection("catalogitems").find(query).sort({price:1}).toArray(function(err, result) {
     		if (err) throw err;
     		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+    			result[i].img="http://"+constantm.ip+":"+constantm.port+result[i].img;
     		}
     		response.json(result);
     		response.end();
@@ -117,7 +117,7 @@ app.get('/product', function (request, response, next) {
 			db.collection("catalogitems").find({_id:id}).toArray(function(err, result) {
     		if (err) throw err;
     		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+    			result[i].img="http://"+constantm.ip+":"+constantm.port+result[i].img;
     		}
     		response.json(result);
     		response.end();

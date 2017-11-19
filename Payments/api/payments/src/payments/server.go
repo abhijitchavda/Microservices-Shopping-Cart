@@ -23,8 +23,8 @@ var (
 
 // MongoDB Config
 var mongodb_server = "localhost:27015"
-var mongodb_database = "test"
-var mongodb_collection = "payments"
+var mongodb_database = "payments"
+var mongodb_collection = "payment"
 // RabbitMQ Config
 /*var rabbitmq_server = "rabbitmq"
 var rabbitmq_port = "5672"
@@ -88,7 +88,7 @@ func paymentHandler(formatter *render.Render) http.HandlerFunc {
         var order_id string = params["order_id"]
         fmt.Println("Fetching order#: ",order_id)
         var result bson.M
-		err = c.Find(bson.M{"order_id" : order_id}).One(&result)
+		err = c.Find(bson.M{"orderId" : order_id}).One(&result)
 		if err != nil {
                 log.Fatal(mux.Vars(req))
         }
