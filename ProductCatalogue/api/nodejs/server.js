@@ -144,10 +144,11 @@ app.get('/product/:id', function (request, response, next) {
 app.post('/addproduct',function(request,response,next){
       var prodname=request.body.name;
       var proddes=request.body.des;
-      var prodprice=request.body.price;
+      var prodprice=parseInt(request.body.price);
       var prodcat=request.body.cat;
-      var prodrat=request.body.rating;
+      var prodrat=parseInt(request.body.rating);
       var prodimg=request.body.img;
+      if(prodname.length!=0&&proddes.length!=0&&prodimg.length!=0){
       MongoClient.connect(murl, function(err, db) {  //get product details
             assert.equal(null, err);
             db.collection("catalogitems").find({"name":prodname,"catagory":prodcat},{name:1}).toArray(function(err, res) {
@@ -176,8 +177,13 @@ app.post('/addproduct',function(request,response,next){
     });
 //console.log(prodname,proddes,prodprice,prodcat,prodrat,prodimg);
 //response.end();
-
+}
+else{
+  response.json({"code":404,"msg":"fill up"})
+                  response.end();
+}
 });
+
 
 
 app.listen(constantm.port)
