@@ -41,3 +41,34 @@ logger.debug('Debugging info');
 logger.verbose('Lots of data...');
 logger.warn('Warning message');
 logger.error('Error info');
+
+/***To be used on express server. 
+Will log the hits to respective api when used.
+
+***/
+//Logging httpRequest
+logger.info(`${req.url} endpoint hit`,{
+  httpRequest:{
+    status: res.statusCode,
+    requestUrl: req.url,
+    requestMethod: req.method,
+    remoteIp: req.connection.remoteAddress,
+  }
+});
+
+
+/****
+2017-11-20T00:28:56.345Z - info: / endpoint hit 
+{ httpRequest: 
+   { status: 200,
+     requestUrl: '/',
+     requestMethod: 'GET',
+     remoteIp: '::1' } }
+*****/
+
+
+
+
+
+
+
