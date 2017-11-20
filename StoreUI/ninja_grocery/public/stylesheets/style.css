@@ -31,3 +31,13 @@ body {
 .dropdown{
 	display: inline-block;
 }
+
+form{
+	background-color: white;
+	border-color: black;
+	width:450px;
+	height:550px;
+	display: inline-block;
+    text-align: center;
+}
+
