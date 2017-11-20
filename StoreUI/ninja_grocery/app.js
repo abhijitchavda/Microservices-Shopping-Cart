@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var Request=require('request');
 
-var routes = require('./routes/index');
+var productcatalog = require('./routes/index');
 var user = require('./routes/user');
 var payment = require('./routes/payment');
 var order = require('./routes/orders');
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/productcatalog', routes);
+app.use('/productcatalog', productcatalog);
 app.use('/user', user);
 app.use('/payment', payment);
 app.use('/orders', order);
