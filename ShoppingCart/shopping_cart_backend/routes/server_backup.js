@@ -24,7 +24,8 @@ router.get('/getallcartitem', function(req, res, next) {
 
 router.post('/additemtocart', function(req, res, next) {
 
-    Cart.count({owner_user_id: req.body.customer_id}, function (err, count){
+
+    Cart.count({owner_user_id: req.body.owner_user_id}, function (err, count){
         if(err)
         {
             console.log("Some Error Happened while matching owner ID");
@@ -35,7 +36,7 @@ router.post('/additemtocart', function(req, res, next) {
                 //document exists
                 console.log("Update cart");
 
-                Cart.count({ products: { $elemMatch : {product_id : req.body.product_id }}}, function (err, productCount) {
+                Cart.count({ products: { $elemMatch : {product_id : req.body.products[0].product_id }}}, function (err, productCount) {
                     if(err)
                     {
                         console.log("Some Error Happened while matching product ID");
@@ -51,11 +52,11 @@ router.post('/additemtocart', function(req, res, next) {
 
                             var condition = {$and :
                                 [
-                                    {owner_user_id:req.body.customer_id},
-                                    { products: { $elemMatch : {product_id : req.body.product_id }}}
+                                    {owner_user_id:req.body.owner_user_id},
+                                    { products: { $elemMatch : {product_id : req.body.products[0].product_id }}}
                                 ]};
 
-                            var updateCol = {$inc: { "products.$.product_quantity": 1 , total_quantity: 1, total_price: req.body.price} };
+                            var updateCol = {$inc: { "products.$.product_quantity": 1 , total_quantity: 1, total_price: req.body.products[0].product_price} };
                             Cart.update(condition, updateCol, {upsert: true}, function(err){
                                 if(err)
                                 {
@@ -75,17 +76,17 @@ router.post('/additemtocart', function(req, res, next) {
                             console.log(msg);
 
                             var newProduct = {
-                                product_id: req.body.product_id,
-                                product_name : req.body.name,
-                                product_desc : req.body.des,
-                                product_price : req.body.price,
-                                product_quantity : 1
+                                product_id: req.body.products[0].product_id,
+                                product_name : req.body.products[0].product_name,
+                                product_desc : req.body.products[0].product_desc,
+                                product_price : req.body.products[0].product_price,
+                                product_quantity : req.body.products[0].product_quantity
                             };
 
-                            var condition = {owner_user_id:req.body.customer_id};
+                            var condition = {owner_user_id:req.body.owner_user_id};
                             var updateCol = {
                                 $push : { products : newProduct},
-                                $inc: { total_quantity: 1, total_price: req.body.price}
+                                $inc: { total_quantity: 1, total_price: req.body.products[0].product_price}
                             };
 
                             Cart.update(condition, updateCol, {upsert: true}, function(err){
@@ -106,15 +107,15 @@ router.post('/additemtocart', function(req, res, next) {
             else {
                 console.log("Insert cart");
                 var item = {
-                    owner_user_id : req.body.customer_id,
+                    owner_user_id : req.body.owner_user_id,
                     total_quantity: req.body.total_quantity,
                     total_price: req.body.total_price,
                     products : [{
-                        product_id: req.body.product_id,
-                        product_name : req.body.name,
-                        product_desc : req.body.des,
-                        product_price : req.body.price,
-                        product_quantity : 1
+                        product_id: req.body.products[0].product_id,
+                        product_name : req.body.products[0].product_name,
+                        product_desc : req.body.products[0].product_desc,
+                        product_price : req.body.products[0].product_price,
+                        product_quantity : req.body.products[0].product_quantity
                     }]
                 };
 
@@ -135,14 +136,12 @@ router.post('/additemtocart', function(req, res, next) {
             }
         }
     });
-
 });
 
 
 router.post('/removeitemfromcart', function(req, res, next) {
 
-
-    Cart.count({owner_user_id: req.body.customer_id}, function (err, count){
+    Cart.count({owner_user_id: req.body.owner_user_id}, function (err, count){
         if(err)
         {
             console.log("Some Error Happened while matching owner ID");
@@ -152,7 +151,7 @@ router.post('/removeitemfromcart', function(req, res, next) {
             if (count > 0) {
                 //document exists
                 console.log("Update cart");
-                Cart.count({ products: { $elemMatch : {product_id : req.body.product_id }}}, function (err, productCount) {
+                Cart.count({ products: { $elemMatch : {product_id : req.body.products[0].product_id }}}, function (err, productCount) {
                     if(err)
                     {
                         console.log("Some Error Happened while matching product ID");
@@ -165,7 +164,7 @@ router.post('/removeitemfromcart', function(req, res, next) {
                             //update product quantity
                             var msg = "Same Product..reduce quantity";
                             console.log(msg);
-                            Cart.count( {'products.product_quantity':1, 'products.product_id': req.body.product_id}, function (err, productArrCount) {
+                            Cart.count( {'products.product_quantity':1, 'products.product_id': req.body.products[0].product_id}, function (err, productArrCount) {
                                 if(err)
                                 {
                                     console.log("Some Error Happened while counting product id");
@@ -179,10 +178,10 @@ router.post('/removeitemfromcart', function(req, res, next) {
                                         var msg = "Last Product..Remove";
                                         console.log(msg);
 
-                                        var condition = {owner_user_id:req.body.customer_id};
+                                        var condition = {owner_user_id:req.body.owner_user_id};
                                         var updateCol = {
-                                            $pull : { products : {product_id : req.body.product_id }},
-                                            $inc: { total_quantity: -1, total_price: -req.body.price}
+                                            $pull : { products : {product_id : req.body.products[0].product_id }},
+                                            $inc: { total_quantity: -1, total_price: -req.body.products[0].product_price}
                                         };
 
                                         Cart.update(condition, updateCol, {upsert: true}, function(err){
@@ -203,11 +202,11 @@ router.post('/removeitemfromcart', function(req, res, next) {
                                         //Reduce Quantity
                                         var condition = {$and :
                                             [
-                                                {owner_user_id:req.body.customer_id},
-                                                { products: { $elemMatch : {product_id : req.body.product_id }}}
+                                                {owner_user_id:req.body.owner_user_id},
+                                                { products: { $elemMatch : {product_id : req.body.products[0].product_id }}}
                                             ]};
 
-                                        var updateCol = {$inc: { "products.$.product_quantity": -1 , total_quantity: -1, total_price: -req.body.price} };
+                                        var updateCol = {$inc: { "products.$.product_quantity": -1 , total_quantity: -1, total_price: -req.body.products[0].product_price} };
                                         Cart.update(condition, updateCol, {upsert: true}, function(err){
                                             if(err)
                                             {
