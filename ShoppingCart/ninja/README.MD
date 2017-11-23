@@ -1,1 +1,0 @@
-## Grocery shopping cart with NodeJS/Express/MongoDB
