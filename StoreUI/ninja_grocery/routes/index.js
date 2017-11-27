@@ -1,12 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Request=require('request');
-var getenv = require('getenv');
-//var serverippc = getenv('SERVER_IP_PC');
-//var serverportpc=getenv('SERVER_PORT_PC');
-
-var serverippc = "localhost";
-var serverportpc="8000";
+var constm=require('../public/javascripts/constants.js');
+var serverippc = constm.server_ip_pc;
+var serverportpc=constm.server_port_pc;
 
 var product;
 var catagori;
