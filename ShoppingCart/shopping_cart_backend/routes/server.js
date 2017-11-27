@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-mongoose.connect('localhost:27015/ninja');
+mongoose.connect('localhost:27017/ninja');
 //mongoose.connect('localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping');
 //mongoose.connect('13.56.179.55:27017, 13.57.12.172:27018, 52.53.176.18:27019/ninja?replicaSet=shopping');
 
@@ -60,10 +60,35 @@ router.post('/getusercart', function(req, res, next) {
 
                         var cart = {
                             "CustomerId" : usercart.owner_user_id,
-                            "ItemDetails" : JSON.stringify(usercart.products),
+                            "ItemDetails" : usercart.products,
                             "Total" :  usercart.total_price
                         };
                         return res.status(200).json({usercart: cart, status: "true", code: "200"});
+                    }
+                });
+            }
+        }
+    });
+});
+
+router.post('/getusercartdetails', function(req, res, next) {
+    Cart.count({owner_user_id: req.body.customer_id}, function (err, count) {
+        if (err) {
+            console.log("Some Error Happened while matching owner ID");
+            return res.status(500).json({"Message": err, status: "false", code: "500"});
+        }
+        else {
+            if (count > 0) {
+                //document exists
+                console.log("Get user cart");
+                Cart.findOne({owner_user_id: req.body.customer_id}, function (err, usercart) {
+                    if (err) {
+                        console.log("Some Error Happened while fetching user cart");
+                        return res.status(500).json({"Message": err, status: "false", code: "500"});
+                    }
+                    else {
+                        console.log(usercart);
+                        return res.status(200).json({usercart: usercart, status: "true", code: "200"});
                     }
                 });
             }

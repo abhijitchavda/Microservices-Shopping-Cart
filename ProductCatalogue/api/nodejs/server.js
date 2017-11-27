@@ -1,6 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
 			, assert = require('assert');
-var murl = "mongodb://localhost:27017,localhost:27018,localhost:27019/catalog?replicaSet=abhijit";
+var murl = "mongodb://localhost:27017/catalog";
+//var murl = "mongodb://localhost:27017,localhost:27018,localhost:27019/catalog?replicaSet=abhijit";
 //var murl = "mongodb://18.217.14.61:27017,18.221.170.100:27018,18.216.89.104:27019/catalog?replicaSet=abhijit";
 var http = require("http");
 var constantm=require('./constants');
