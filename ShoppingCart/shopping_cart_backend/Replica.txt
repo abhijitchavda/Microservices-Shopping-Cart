@@ -1,0 +1,65 @@
+step 1
+
+mkdir replicaset1 replicaset2 replicaset3
+
+step 2
+
+START /B mongod --replSet shopping --logpath "rs1.log" --dbpath replicaset1 --port 27017
+START /B mongod --replSet shopping --logpath "rs2.log" --dbpath replicaset2 --port 27018 
+START /B mongod --replSet shopping --logpath "rs3.log" --dbpath replicaset3 --port 27019
+
+step 3
+
+get inside a mongo instance using: 
+	mongo
+
+step 4
+
+rs.initiate({ _id : "shopping", members: [ { _id : 0, host : "localhost:27017" },{ _id : 1, host : "localhost:27018" },{ _id : 3, host : "localhost:27019" } ] })
+
+rs.initiate({ _id : "shopping", members: [ { _id : 0, host : "db1.shopping.com:27017" },{ _id : 1, host : "ec2-13-57-12-172.us-west-1.compute.amazonaws.com:27018" },{ _id : 3, host : "ec2-52-53-176-18.us-west-1.compute.amazonaws.com:27019" } ] })
+
+rs.initiate
+rs.add("
+
+db1.shopping.com:27017"
+rs.add("db2.shopping.com:27018")
+rs.add("db3.shopping.com:27019")
+
+step 5
+
+check the created replication sets and primary and secondary nodes 
+
+	rs.status()
+step 6
+connect to the primary node of the replicaset
+
+mongo --host shopping/localhost:27017,localhost:27018,localhost:27019
+
+mongo --port 27018
+
+db.getMongo().setSlaveOk()
+
+
+https://eladnava.com/deploy-a-highly-available-mongodb-replica-set-on-aws/
+
+var murl = "mongodb://localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping";
+
+sudo nano /etc/mongod.conf
+
+
+sudo service mongod restart
+
+
+sudo bash -c 'echo db1.shopping.com > /etc/hostname && hostname -F /etc/hostname'
+sudo bash -c 'echo db2.shopping.com > /etc/hostname && hostname -F /etc/hostname'
+sudo bash -c 'echo db3.shopping.com > /etc/hostname && hostname -F /etc/hostname'
+
+
+sudo nano /etc/hosts
+127.0.0.1   localhost db1.shopping.com
+52.53.176.18 db3.shopping.com
+13.57.12.172 db2.shopping.com
+13.56.179.55 db1.shopping.com
+
+C:\Windows\System32\Drivers\etc\hosts

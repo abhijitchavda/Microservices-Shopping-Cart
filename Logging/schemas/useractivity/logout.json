@@ -1,0 +1,14 @@
+{
+    "_id" : ObjectId("5a1a28034086cc13584e1c38"),
+    "timestamp" : ISODate("2017-11-26T02:33:39.099Z"),
+    "level" : "info",
+    "message" : "logm4 has logged out",
+    "meta" : {
+        "httpRequest" : {
+            "status" : 200,
+            "requestUrl" : "/logout",
+            "requestMethod" : "GET",
+            "remoteIp" : "::1"
+        }
+    }
+}

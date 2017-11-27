@@ -1,0 +1,14 @@
+{
+    "_id" : ObjectId("5a1a27fa4086cc13584e1c2c"),
+    "timestamp" : ISODate("2017-11-26T02:33:30.788Z"),
+    "level" : "info",
+    "message" : "logm4 has registered.",
+    "meta" : {
+        "httpRequest" : {
+            "status" : 302,
+            "requestUrl" : "/users/register",
+            "requestMethod" : "POST",
+            "remoteIp" : "::1"
+        }
+    }
+}

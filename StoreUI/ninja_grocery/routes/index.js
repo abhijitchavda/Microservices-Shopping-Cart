@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var Request=require('request');
+var getenv = require('getenv');
+var serverippc = getenv('SERVER_IP_PC');
+var serverportpc=getenv('SERVER_PORT_PC');
 var product;
 var catagori;
 var productChunks=[];
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	Request.get('http://10.0.0.183:8000/mostfav', function (error, response, body) {
+	Request.get('http://'+serverippc+':'+serverportpc+'/mostfav', function (error, response, body) {
  	            if (error) {
                 throw error;
             }
@@ -26,7 +29,7 @@ router.get('/', function(req, res, next) {
 router.get('/catagory/:catagory', function(req, res, next) {
       var cat=req.params.catagory;
       catagori=cat;
-      Request.get('http://10.0.0.183:8000/catagory/'+cat, function (error, response, body) {
+      Request.get('http://'+serverippc+':'+serverportpc+'/catagory/'+cat, function (error, response, body) {
                 if (error) {
                 throw error;
             }
@@ -46,7 +49,7 @@ router.get('/catagory/:catagory', function(req, res, next) {
 router.get('/catagory/sort/:variant/:type', function(req, res, next) {
       var variant=req.params.variant;
       var type=req.params.type;
-      Request.get('http://10.0.0.183:8000/catagory/'+catagori+'/sort/'+variant+'/'+type, function (error, response, body) {
+      Request.get('http://'+serverippc+':'+serverportpc+'/catagory/'+catagori+'/sort/'+variant+'/'+type, function (error, response, body) {
                  if (error) {
                 throw error;
             }
@@ -64,25 +67,50 @@ router.get('/catagory/sort/:variant/:type', function(req, res, next) {
 });
 
 router.post("/addtocart/:id",function(request, response, next){
-var it=request.params.id;
-//console.log(it);
+        var it=request.params.id;
+        var c_id="adsfdafdsaf";
+        //console.log(it);
 
-Request.get('http://10.0.0.183:8000/product/'+it, function (error, res, body) {
+        Request.get('http://'+serverippc+':'+serverportpc+'/product/'+it, function (error, res, body) {
                  if (error) {
-                throw error;
-            }
+                      throw error;
+                 }
 
-         data = JSON.parse(body);
-         console.log(data);
+                  data = JSON.parse(body);
+                  console.log(data[0]._id);
+                  //response.json({"status":true});
+                  var headers = {
+                            'User-Agent':       'Super Agent/0.0.1',
+                            'Content-Type':     'application/x-www-form-urlencoded'
+                  }
 
-         
-         response.json({"status":true});
+// Configure the request
+                  var options = {
+                            url: 'http://10.250.17.13:5000/additemtocart',//add shopping cart serverip
+                            method: 'POST',
+                            headers: headers,
+                            form: {"customer_id":c_id,'product_id': data[0]._id,'name': data[0].name,'des': data[0].description,'price':data[0].price,'cat':data[0].catagory,'rating':data[0].avg_ratings,'img':data[0].img}
+                  }
 
-  });
+// Start the request
+                  Request(options, function (error, resp, bod) {
+                  if (error) {
+                          throw error;
+                  }
+            
+                  var data = JSON.parse(bod);
+                  if(data.code==200){
+                      response.json({"status":true});
+                  }
+            
+                  })          
+        });
 
 //form: {'longURL': url}
 //SEND THE PRODUCT TO CART AND MODIFY THE STATUS
 });
+
+
 var isSend="";
 router.get("/addproductsadmin",function(request, response, next){
 response.render('shop/adminprod', { title: 'ninja product catalog',stat: isSend});
@@ -106,7 +134,7 @@ var headers = {
 
 // Configure the request
 var options = {
-    url: 'http://10.0.0.183:8000/addproduct',
+    url: 'http://'+serverippc+':'+serverportpc+'/addproduct',
     method: 'POST',
     headers: headers,
     form: {'name': name,'des':des,'price':price,'cat':cat,'rating':rating,'img':img}
@@ -146,9 +174,6 @@ Request(options, function (error, resp, body) {
 
 
 
-});
-router.get("/payment",function(request, response, next){
-console.log("Success");
 });
 
 module.exports = router;

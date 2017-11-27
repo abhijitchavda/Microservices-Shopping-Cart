@@ -1,0 +1,14 @@
+{
+    "_id" : ObjectId("5a1a28014086cc13584e1c32"),
+    "timestamp" : ISODate("2017-11-26T02:33:37.360Z"),
+    "level" : "info",
+    "message" : "logm4 has logged in",
+    "meta" : {
+        "httpRequest" : {
+            "status" : 200,
+            "requestUrl" : "/login",
+            "requestMethod" : "POST",
+            "remoteIp" : "::1"
+        }
+    }
+}
