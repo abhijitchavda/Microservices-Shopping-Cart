@@ -4,6 +4,7 @@ The payment structure specifies the data added to the payment collection in Mong
 */
 import (	
     "gopkg.in/mgo.v2/bson"
+    "gopkg.in/mgo.v2"
 )
 type payment struct{
 	Id         bson.ObjectId `bson:"_id,omitempty" json:"id"`
@@ -12,4 +13,8 @@ type payment struct{
 	Total 		float32 `bson:"total" json:"total"`
 	Timestamp 	string	`bson:"timestamp" json:"timestamp"`
 }
+type MongoWriter struct {
+    sess *mgo.Session
+}
+var mw *MongoWriter
 var Payment_channel chan payment

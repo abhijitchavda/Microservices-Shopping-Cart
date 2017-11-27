@@ -7,11 +7,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var Request=require('request');
+var flash = require('connect-flash');
 
 var productcatalog = require('./routes/index');
 var user = require('./routes/user');
-var payment = require('./routes/payment');
+//var payment = require('./routes/payment');
+var checkout = require('./routes/checkout');
 var order = require('./routes/orders');
+var shoppingcart = require('./routes/shoppingcart');
 
 var app = express();
 
@@ -26,11 +29,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 app.use('/productcatalog', productcatalog);
 app.use('/user', user);
-app.use('/payment', payment);
+//app.use('/payment', payment);
 app.use('/orders', order);
+app.use('/shoppingcart',shoppingcart);
+//app.use('/payment/checkout',payment);
+app.use('/checkout',checkout);
+app.use('/checkout/success', checkout);
 
 
 // catch 404 and forward to error handler

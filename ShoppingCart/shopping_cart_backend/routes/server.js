@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/ninja');
+mongoose.connect('localhost:27015/ninja');
 //mongoose.connect('localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping');
 //mongoose.connect('13.56.179.55:27017, 13.57.12.172:27018, 52.53.176.18:27019/ninja?replicaSet=shopping');
 
