@@ -77,6 +77,8 @@ router.post('/', function(req,res, next){
                         }
             });
 
+            
+
 
             //Redirect to success page
             res.redirect('/checkout/success');

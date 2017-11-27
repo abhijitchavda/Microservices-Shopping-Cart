@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/ninja');
+mongoose.connect('localhost:27015/ninja');
 var Schema = mongoose.Schema;
 var Admin = require('../models/Admin')
 /*
