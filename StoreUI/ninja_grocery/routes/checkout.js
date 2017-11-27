@@ -77,6 +77,19 @@ router.post('/', function(req,res, next){
                         }
             });
 
+            var options = {
+                  // Add AWS URI
+                  uri: 'http://localhost:8000/removeusercart',
+                  method: 'POST',
+                  json: {"customer_id":"niralkk"}
+            };
+
+            request(options, function (error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                          console.log("Removed items from cart!");
+                        }
+            });
+
             
 
 

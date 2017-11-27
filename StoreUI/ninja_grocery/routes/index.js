@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Request=require('request');
-var getenv = require('getenv');
-var serverippc = getenv('SERVER_IP_PC');
-var serverportpc=getenv('SERVER_PORT_PC');
+//var getenv = require('getenv');
+//var serverippc = getenv('SERVER_IP_PC');
+//var serverportpc=getenv('SERVER_PORT_PC');
 var product;
 var catagori;
 var productChunks=[];

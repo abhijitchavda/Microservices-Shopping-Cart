@@ -182,8 +182,6 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 	*/
 
 }
-
-
 /*
 Function to write to Payment channel
 */
