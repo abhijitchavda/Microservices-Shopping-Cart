@@ -12,27 +12,85 @@ import (
 	//"github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2"
     "gopkg.in/mgo.v2/bson"
+    //"time"
+    //"bytes"
 )
 
-var (
-    Trace   *log.Logger
-    Info    *log.Logger
-    Warning *log.Logger
-    Error   *log.Logger
-)
+/* 
 
-// MongoDB Config
+Variable declaration and initialization
+
+*/
+
+// MongoDB Configuration
+
+//Local DB payment configuration 
 var mongodb_server = "localhost:27015"
 var mongodb_database = "payments"
 var mongodb_collection = "payment"
-// RabbitMQ Config
-/*var rabbitmq_server = "rabbitmq"
-var rabbitmq_port = "5672"
-var rabbitmq_queue = "gumball"
-var rabbitmq_user = "guest"
-var rabbitmq_pass = "guest"*/
 
-// NewServer configures and returns a Server.
+//Local DB payment log configuration 
+var mongodb_log_server = "localhost:27015"
+var mongodb_log_database = "log"
+var mongodb_log_collection = "payments"
+
+//DB payment configuration 
+
+//var mongodb_server = "mongodb://54.153.119.128,52.53.219.137,52.53.240.155/ninjacart?replicaSet=mongo-replica-set"
+//var mongodb_database = "ninjacart"
+//var mongodb_collection = "payments"
+
+//DB payment log configuration 
+
+//var mongodb_log_server = "localhost:27015"
+//var mongodb_log_database = "log"
+//var mongodb_log_collection = "payments"
+
+
+/*
+Function is used to initialize parameters and create a session for logger DB
+*/
+func init(){
+
+	fmt.Println("Initializing...")
+
+	//Create channel to hold payment object
+	Payment_channel=make(chan payment,10)
+
+	//Code to create DB writer workers
+	fmt.Println("Starting write workers..")
+	for i:=0; i<4; i++{
+		fmt.Println("Worker ",i+1,": Started")
+		go writerWorker()
+	} 
+	//Code to create a session to the logging module DB
+	sess,err := mgo.Dial(mongodb_log_server)
+	if(err!=nil){
+		fmt.Println("Unable to connect to logger DB...Proceeding without logging to Logger sub-module")
+	}else{
+		mw = &MongoWriter{sess}
+		log.SetOutput(mw)
+	}
+}
+
+/*
+Log Writer implementation to write logs to Logging module
+*/
+func (mw *MongoWriter) Write(p []byte) (n int, err error) {
+    //c := mw.sess.DB(mongodb_log_database).C(mongodb_log_collection)
+    /*err = c.Insert(bson.M{
+        "created": time.Now(),
+        "msg":     string(p),
+    })
+    if err != nil {
+        return
+    }*/
+    return len(p), nil
+}
+
+/* 
+NewServer configures and returns a Server.
+*/
 func NewServer() *negroni.Negroni {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
@@ -41,53 +99,40 @@ func NewServer() *negroni.Negroni {
 	mx := mux.NewRouter()
 	initRoutes(mx, formatter)
 	n.UseHandler(mx)
+	fmt.Println("Started payment server...")
 	return n
 }
 
-func init(){
-	//Code to create workers 
-	fmt.Println("Started server...")
-	Payment_channel=make(chan payment,10)
-	go writerWorker()
-	//for i:=0; i<4; i++{
-		//go workerHandler()
-	//} 
 
-	//Create updater worker
-}
-
-// API Routes
+/*
+Function that binds handlers for API routes
+*/
 func initRoutes(mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/payment/{order_id}", paymentHandler(formatter)).Methods("GET")
 	mx.HandleFunc("/payment", newPaymentHandler(formatter)).Methods("POST")
 	mx.HandleFunc("/ping", ping(formatter)).Methods("GET")
 }
+
 /*
-// Helper Functions
-func failOnError(err error, msg string) {
-	if err != nil {
-		log.Fatalf("%s: %s", msg, err)
-		panic(fmt.Sprintf("%s: %s", msg, err))
-	}
-}*/
-
-
-// API Ping Handler
+Function to provide API healthcheck - ping 
+*/
 func ping(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Ping - Payment API running");
 		result := "Payment API - Running"
+		//log.Println("Test ping log"+",hi")
 		formatter.JSON(w, http.StatusOK, result);
 	}
 }
-
+/*
+Function that handles GET request and displays the payment information based on the order number
+*/
 func paymentHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
-		//formatter.JSON(w, http.StatusOK, struct{ Test string }{"API version 1.0 alive!"})
 		// Connects to MongoDB
 		session, err := mgo.Dial(mongodb_server)
         if err != nil {
-        		Error.Println("Payments API - Unable to connect to MongoDB during read operation")
+        		fmt.Println("Payments API - Unable to connect to MongoDB during read operation")
                 panic(err)
         }
         defer session.Close()
@@ -106,27 +151,22 @@ func paymentHandler(formatter *render.Render) http.HandlerFunc {
 
 	}
 }
-
+/*
+Function that handles POST request and writes the payment object to Payment Channel
+*/
 func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		var data payment
 		err := json.NewDecoder(req.Body).Decode(&data)
 		if err!=nil{
-			Error.Println("Payments API - Unable to obtain request body")
+			fmt.Println("Payments API - Unable to obtain request body")
 			panic(err)
 		}
-		/*session, err := mgo.Dial(mongodb_server)
-        if err != nil {
-                panic(err)
-        }
-        defer session.Close()
-        session.SetMode(mgo.Monotonic, true)
-        c := session.DB(mongodb_database).C(mongodb_collection)
-		c.Insert(data)*/
+		fmt.Println("New payment received")
+		fmt.Println("Payment recorded in DB")
 		go workerHandler(data,Payment_channel)
 		formatter.JSON(w, http.StatusOK, data)
 	}
-
 	/*
 
 	Sample payment write:
@@ -140,20 +180,27 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 	"Total" : 32.5, 
 	"Timestamp" : "20170202"}
 	*/
+
 }
 
+
+/*
+Function to write to Payment channel
+*/
 func workerHandler(data payment,Payment_channel chan payment) {
+	// Write payment object to payment channel
 	Payment_channel<-data
-	//Worker tasks
-	//Write to channel
 }
+/*
+Worker function that write Payment object from the Payment Channel to MongoDB
+*/
 func writerWorker(){
-
+	// Worker function that gets the value from the payment channel and writes to MongoDB
 	for i:=0;;i++{
 		payment_value:=<-Payment_channel
 		session, err := mgo.Dial(mongodb_server)
         if err != nil {
-        		Error.Println("Payments API - Unable to connect to MongoDB during write operation")
+        		fmt.Println("Payments API - Unable to connect to MongoDB during write operation")
                 panic(err)
         }
         defer session.Close()

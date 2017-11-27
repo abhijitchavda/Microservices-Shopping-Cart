@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    background-image: url('https://cdn.modernfarmer.com/wp-content/uploads/2014/11/shoppinghero.jpg');
+    //background-image: url('https://cdn.modernfarmer.com/wp-content/uploads/2014/11/shoppinghero.jpg');
     background-attachment: fixed;
 }
 
@@ -39,5 +39,24 @@ form{
 	height:550px;
 	display: inline-block;
     text-align: center;
+}
+
+#button_shopnow{
+	width:20%;
+	 margin:auto;
+  	display:block;
+}
+
+#button_login{
+	width:20%;
+	 margin:auto;
+  	display:block;
+  	float:left;
+}
+
+#empty_order_img img {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 

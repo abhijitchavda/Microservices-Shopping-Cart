@@ -4,6 +4,7 @@ The payment structure specifies the data added to the payment collection in Mong
 */
 import (	
     "gopkg.in/mgo.v2/bson"
+    "gopkg.in/mgo.v2"
 )
 
 type order struct{
@@ -17,4 +18,9 @@ type order struct{
 	DeliveryAddress string `bson:"deliveryAddress" json:"deliveryAddress"`
 }
 
+type MongoWriter struct {
+    sess *mgo.Session
+}
+
+var mw *MongoWriter
 var Order_channel chan order
