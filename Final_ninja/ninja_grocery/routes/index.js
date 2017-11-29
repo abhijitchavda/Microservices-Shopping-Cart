@@ -70,11 +70,11 @@ router.get('/catagory/sort/:variant/:type',isLoggedIn, function(req, res, next) 
 });
 
 
-router.post("/addtocart/:id",function(request, response, next){
-   var it=request.params.id;
-   var c_id="5a16549c5777763c787cec14";
+router.get('/addtocart/:cid',isLoggedIn,function(req, res, next){
+   var it=req.params.cid;
+   var c_id=req.session.passport.user;
    //var c_id=request.session.passport.user;
-   console.log(c_id);
+   console.log("this is the uid---->"+c_id);
     //if(request.session.passport.user){
     //c_id=request.session.passport.user;    
    // }
@@ -83,7 +83,7 @@ router.post("/addtocart/:id",function(request, response, next){
     //}
 
 
-    Request.get('http://'+serverippc+':'+serverportpc+'/product/'+it, function (error, res, body) {
+    Request.get('http://'+serverippc+':'+serverportpc+'/product/'+it, function (error, response, body) {
         if (error) {
             throw error;
         }
@@ -121,7 +121,7 @@ router.post("/addtocart/:id",function(request, response, next){
 
             if(data.code=="200"){
                 console.log("200");
-                response.json({"status":true});
+                res.redirect('/productcatalog'); 
             }
 
 
