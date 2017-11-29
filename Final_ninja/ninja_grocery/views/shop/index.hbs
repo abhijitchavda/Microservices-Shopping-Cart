@@ -2,7 +2,7 @@
 <script src="/javascripts/star-rating.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    function useraction(id) {
+   /* function useraction(id) {
         console.log("here");
         var request = new Request('/productcatalog/addtocart/'+id, {
             method: 'POST'
@@ -22,7 +22,7 @@
 
         });
     }
-
+*/
 </script>
 {{# each products}}
     <div class="row">
@@ -38,9 +38,9 @@
                         </p>
                         <div class="clearfix">
                             <div class="price pull-left">${{this.price}}</div>
-                            <button onclick="useraction('{{this._id}}')" class="btn btn-default pull-right btn-success" role="button">Buy</button>
+                            <!--<button onclick="" class="btn btn-default pull-right btn-success" role="button">Buy</button>-->
 
-                            <!--  <a href="/productcatalog/addtocart/{{this._id}}" onclick="alert('item added'); return true;" class="btn btn-default pull-right btn-success" role="button">Buy</a> -->
+                            <a href="/productcatalog/addtocart/{{this._id}}" onclick="alert('item added'); return true;" class="btn btn-default pull-right btn-success" role="button">Buy</a>
                         </div>
                     </div>
                 </div>
@@ -48,3 +48,6 @@
         {{/each}}
     </div>
 {{/each}}
+
+
+<!--useraction('{{this._id}}')-->
