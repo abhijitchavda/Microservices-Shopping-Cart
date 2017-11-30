@@ -72,6 +72,7 @@ router.post('/getusercart', function(req, res, next) {
 });
 
 router.post('/getusercartdetails', function(req, res, next) {
+   console.log("Inside user cart");
     Cart.count({owner_user_id: req.body.customer_id}, function (err, count) {
         if (err) {
             console.log("Some Error Happened while matching owner ID");
@@ -98,6 +99,7 @@ router.post('/getusercartdetails', function(req, res, next) {
 
 
 router.post('/additemtocart', function(req, res, next) {
+    console.log(req.body);
 
     Cart.count({owner_user_id: req.body.customer_id}, function (err, count){
         if(err)
@@ -131,7 +133,7 @@ router.post('/additemtocart', function(req, res, next) {
                                 ]};
 
                             var updateCol = {$inc: { "products.$.product_quantity": 1 , total_quantity: 1, total_price: req.body.price} };
-                            Cart.update(condition, updateCol, {upsert: true}, function(err){
+                            Cart.update(condition, updateCol, false, function(err){
                                 if(err)
                                 {
                                     console.log("Some Error Happened while incrementing product quantity");
@@ -163,7 +165,7 @@ router.post('/additemtocart', function(req, res, next) {
                                 $inc: { total_quantity: 1, total_price: req.body.price}
                             };
 
-                            Cart.update(condition, updateCol, {upsert: true}, function(err){
+                            Cart.update(condition, updateCol, false, function(err){
                                 if(err)
                                 {
                                     console.log("Some Error Happened while pushing new product");
@@ -204,6 +206,7 @@ router.post('/additemtocart', function(req, res, next) {
                     {
                         var msg = numAffected+" rows added into Cart\n"+product;
                         console.log(msg);
+                        //res.status(200).json({"Message": msg, status : "true", code : "200" });
                         res.status(200).json({"Message": msg, status : "true", code : "200" });
                     }
                 });
@@ -259,7 +262,7 @@ router.post('/removeitemfromcart', function(req, res, next) {
                                             $inc: { total_quantity: -1, total_price: -req.body.price}
                                         };
 
-                                        Cart.update(condition, updateCol, {upsert: true}, function(err){
+                                        Cart.update(condition, updateCol, false, function(err){
                                             if(err)
                                             {
                                                 console.log("Some Error Happened while reomving last product");
@@ -282,7 +285,7 @@ router.post('/removeitemfromcart', function(req, res, next) {
                                             ]};
 
                                         var updateCol = {$inc: { "products.$.product_quantity": -1 , total_quantity: -1, total_price: -req.body.price} };
-                                        Cart.update(condition, updateCol, {upsert: true}, function(err){
+                                        Cart.update(condition, updateCol, false, function(err){
                                             if(err)
                                             {
                                                 console.log("Some Error Happened while decrementing product quantity");
