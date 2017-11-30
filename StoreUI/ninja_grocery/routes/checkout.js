@@ -4,7 +4,9 @@ var request = require('request');
 var moment = require('moment');
 const uuidv4 = require('uuid/v4');
 var passport = require('passport');
-
+var const_file=require('../public/javascripts/constants.js');
+var payment_endpoint = const_file.payment_api_endpoint
+var order_endpoint = const_file.order_api_endpoint
 /* GET users listing. */
 router.get('/',isLoggedIn, function(req, res, next) {
     errMsg = "";
@@ -72,7 +74,7 @@ router.post('/', isLoggedIn, function(req,res, next){
             console.log('*Payment object created: \n'+JSON.stringify(paymentObject));
             var options = {
                   // Add AWS URI
-                  uri: 'http://localhost:5000/payment',
+                  uri: payment_endpoint,//'http://localhost:5000/payment',
                   method: 'POST',
                   json: paymentObject
             };
@@ -118,7 +120,7 @@ router.post('/', isLoggedIn, function(req,res, next){
 
                            var options = {
                                   // Add AWS URI
-                                  uri: 'http://localhost:4000/order',
+                                  uri: order_endpoint,//'http://localhost:4000/order',
                                   method: 'POST',
                                   json: orderObject
                             };

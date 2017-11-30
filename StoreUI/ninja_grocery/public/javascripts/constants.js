@@ -1,4 +1,9 @@
-var server_ip_pc="18.217.169.200";
+//var server_ip_pc="18.217.169.200";
 var server_port_pc="3000";
+var server_ip_pc="product-catalog-server-load-1546340057.us-east-2.elb.amazonaws.com";
+var payment_api_endpoint = "http://54.193.66.242:5000/payment";
+var order_api_endpoint = "http://54.193.66.242:4000/order"
+module.exports.payment_api_endpoint=payment_api_endpoint;
+module.exports.order_api_endpoint=order_api_endpoint;
 module.exports.server_ip_pc=server_ip_pc;
 module.exports.server_port_pc=server_port_pc;

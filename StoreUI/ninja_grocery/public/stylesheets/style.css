@@ -4,8 +4,169 @@ html, body {
     overflow-x: hidden;
 }
 
+/*
+Navbar css
+*/
+
+.bs-dark.navbar-inverse {
+  background-color: #222;
+  border-color: #080808;
+}
+.bs-dark .navbar-img {padding:5px 6px !important;}
+.bs-dark .navbar-img img {width:40px;}
+.bs-dark .dropdown-menu {
+  min-width: 200px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  background-color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.bs-dark .dropdown-menu .divider {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+.bs-dark .dropdown-menu > li > a {
+  padding: 6px 20px;
+  color: rgba(255,255,255,0.80);
+}
+.bs-dark .dropdown-menu > li > a:hover,
+.bs-dark .dropdown-menu > li > a:focus {
+  color: rgba(255,255,255,0.70);
+  text-decoration: none;
+  background-color: transparent;
+}
+.bs-dark .dropdown-menu > .active > a,
+.bs-dark .dropdown-menu > .active > a:hover,
+.bs-dark .dropdown-menu > .active > a:focus {
+  color: rgba(255,255,255,0.70);
+  text-decoration: none;
+  background-color: transparent;
+  outline: 0;
+}
+
+.bs-dark .navbar-form {
+  margin:0;
+  margin-top: 5px;
+  padding:8px 0px;
+}
+ 
+.bs-dark .navbar-form .search-box {
+  border:0px;
+  height:35px;
+  outline: none;
+  width:320px;
+  padding-right: 3px;
+  padding-left: 15px;
+  margin:4px;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+}
+ 
+.bs-dark .navbar-form button {
+  border: 0;
+  background: none;
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -34px;
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+ 
+.bs-dark .search-box:focus + button {
+  z-index: 3;   
+}
+
+@media (min-width: 768px) {
+    .bs-dark .dropdown:hover {background-color: #000;}
+	.bs-dark .dropdown:hover .dropdown-menu {
+	  display: block;
+	}
+	.bs-dark .navbar-form {
+	  padding:0px;
+	}	
+	.bs-dark .navbar-form .search-box {
+	  width:260px;
+	  height:32px;
+	}
+
+}
+// Navbar css ends
+
+/*Footer css*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+ul,li{
+    padding:0;
+    margin:0;
+}
+li{
+    list-style-type:none;
+}
+
+
+
+footer { background-color:#0c1a1e; min-height:350px; font-family: 'Open Sans', sans-serif; }
+.footer-col { margin-top:50px; }
+.logofooter { margin-bottom:10px; font-size:25px; color:#fff; font-weight:700;}
+
+.footer-col p { color:#fff; font-size:12px; font-family: 'Open Sans', sans-serif; margin-bottom:15px;}
+.footer-col p i { width:20px; color:#999;}
+
+.footer-ul { list-style-type:none;  padding-left:0; margin-left:2px;}
+.footer-ul li { line-height:29px; font-size:12px;}
+.footer-ul li a { color:#a0a3a4; transition: color 0.2s linear 0s, background 0.2s linear 0s; }
+.footer-ul i { margin-right:10px;}
+.footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#ff670f; }
+
+ .copyright { min-height:40px; background-color:#000000;}
+ .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0;}
+ .heading7 { font-size:21px; font-weight:700; color:#d9d6d6; margin-bottom:22px;}
+ .post p { font-size:12px; color:#FFF; line-height:20px;}
+ .post p span { display:block; color:#8f8f8f;}
+ .bottom_ul { list-style-type:none; float:right; margin-bottom:0;}
+ .bottom_ul li { float:left; line-height:40px;}
+ .bottom_ul li:after { content:"/"; color:#FFF; margin-right:8px; margin-left:8px;}
+ .bottom_ul li a { color:#FFF;  font-size:12px;}
+.social-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    background-color: blue;
+    color: #fff;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 7px;
+    border-radius: 50%;
+}
+ .footer-social li{
+     float:left;
+ }
+ .linked-in{
+     background-color:#007bb6;
+ }
+ .facebook{
+     background-color:#3b5998;
+ }
+ .twitter{
+     background-color:#1da1f2;
+ }
+ .google{
+     background-color:#f63e28;
+ }
+
+ //Footer css ends
+
 body {
     //background-image: url('https://cdn.modernfarmer.com/wp-content/uploads/2014/11/shoppinghero.jpg');
+    //background-image: url('http://www.dq995.com/data/out/1/779382.jpg');
     background-attachment: fixed;
 }
 

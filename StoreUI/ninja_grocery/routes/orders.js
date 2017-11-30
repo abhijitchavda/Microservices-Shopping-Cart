@@ -1,13 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var Request = require('request');
+var const_file=require('../public/javascripts/constants.js');
+var payment_endpoint = const_file.payment_api_endpoint
+var order_endpoint = const_file.order_api_endpoint
 
 /* GET users listing. */
 router.get('/', isLoggedIn,function(req, res, next) {
 	
 	
 	var userId = req.session.passport.user;
-	Request.get('http://localhost:4000/order/'+userId, function (error, response, body) {
+	//Request.get('http://localhost:4000/order/'+userId, function (error, response, body) {
+
+    Request.get(order_endpoint+"/"+userId, function (error, response, body) {
  	        if (error) {
                 throw error;
             }
