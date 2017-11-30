@@ -17,7 +17,7 @@ console.log("heekk");
     };
 
     console.log("hsbd"+req.session.passport.user);
-    var user = "5a16549c5777763c787cec14";
+    var user = req.session.passport.user;
 // Configure the request
     var options = {
         url: 'http://localhost:9000/getusercartdetails',

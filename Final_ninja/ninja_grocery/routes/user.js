@@ -34,6 +34,7 @@ router.get('/profile',isLoggedIn, function(req,res,next){
 
 router.get('/logout', isLoggedIn, function(req, res, next){
     req.logOut();
+    req.session.destroy();
     res.redirect('/user/signin');
 });
 
@@ -48,7 +49,7 @@ router.get('/signup', function(req,res,next){
 });
 
 router.post('/signup', passport.authenticate('local.signup',{
-    successRedirect: '/user/profile',
+    successRedirect: '/productcatalog',
     failureRedirect: '/user/signup',
     failureFlash: true
 }));
