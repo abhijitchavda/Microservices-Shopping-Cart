@@ -4,12 +4,14 @@ var Request=require('request');
 var constm=require('../public/javascripts/constants.js');
 var serverippc = constm.server_ip_pc;
 var serverportpc=constm.server_port_pc;
-
+var passport = require('passport');
+var userid;
 var product;
 var catagori;
 var productChunks=[];
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/',isLoggedIn, function(req, res, next) {
+    console.log("#######"+req.session.passport.user);
     Request.get('http://'+serverippc+':'+serverportpc+'/mostfav', function (error, response, body) {
         if (error) {
             throw error;
@@ -27,7 +29,7 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/catagory/:catagory', function(req, res, next) {
+router.get('/catagory/:catagory',isLoggedIn, function(req, res, next) {
     var cat=req.params.catagory;
     catagori=cat;
     Request.get('http://'+serverippc+':'+serverportpc+'/catagory/'+cat, function (error, response, body) {
@@ -47,7 +49,7 @@ router.get('/catagory/:catagory', function(req, res, next) {
 
 });
 
-router.get('/catagory/sort/:variant/:type', function(req, res, next) {
+router.get('/catagory/sort/:variant/:type',isLoggedIn, function(req, res, next) {
     var variant=req.params.variant;
     var type=req.params.type;
     Request.get('http://'+serverippc+':'+serverportpc+'/catagory/'+catagori+'/sort/'+variant+'/'+type, function (error, response, body) {
@@ -67,44 +69,63 @@ router.get('/catagory/sort/:variant/:type', function(req, res, next) {
 
 });
 
-router.post("/addtocart/:id",function(request, response, next){
-    var it=request.params.id;
-    var c_id="adsfdafdsaf";
-    //console.log(it);
 
-    Request.get('http://'+serverippc+':'+serverportpc+'/product/'+it, function (error, res, body) {
+router.get('/addtocart/:cid',isLoggedIn,function(req, res, next){
+   var it=req.params.cid;
+   var c_id=req.session.passport.user;
+   //var c_id=request.session.passport.user;
+   console.log("this is the uid---->"+c_id);
+    //if(request.session.passport.user){
+    //c_id=request.session.passport.user;    
+   // }
+    //else if(flag==1){
+    //c_id=userid;
+    //}
+
+
+    Request.get('http://'+serverippc+':'+serverportpc+'/product/'+it, function (error, response, body) {
         if (error) {
             throw error;
         }
 
         data = JSON.parse(body);
-        console.log(data[0]._id);
-        //response.json({"status":true});
         var headers = {
             'User-Agent':       'Super Agent/0.0.1',
             'Content-Type':     'application/x-www-form-urlencoded'
-        }
+        };
+
 
 // Configure the request
+        console.log("The user is:"+c_id);
         var options = {
             url: 'http://localhost:9000/additemtocart',//add shopping cart serverip
             method: 'POST',
             headers: headers,
-            form: {"customer_id":c_id,'product_id': data[0]._id,'name': data[0].name,'des': data[0].description,'price':data[0].price,'cat':data[0].catagory,'rating':data[0].avg_ratings,'img':data[0].img}
+            form: {'customer_id':c_id,'product_id': data[0]._id,
+                'name': data[0].name,'des': data[0].description,'price':data[0].price,
+                'cat':data[0].catagory,'rating':data[0].avg_ratings,'img':data[0].img}
         }
 
+
+
+        console.log("form"+ JSON.stringify(options.form));
 // Start the request
         Request(options, function (error, resp, bod) {
+            console.log(bod);
             if (error) {
+                console.log("Error!!"+error);
                 throw error;
             }
 
             var data = JSON.parse(bod);
-            if(data.code==200){
-                response.json({"status":true});
+
+            if(data.code=="200"){
+                console.log("200");
+                res.redirect('/productcatalog'); 
             }
 
-        })
+
+        });
     });
 
 //form: {'longURL': url}
@@ -113,11 +134,11 @@ router.post("/addtocart/:id",function(request, response, next){
 
 
 var isSend="";
-router.get("/addproductsadmin",function(request, response, next){
+router.get("/addproductsadmin",isLoggedIn,function(request, response, next){
     response.render('shop/adminprod', { title: 'ninja product catalog',stat: isSend});
 });
 
-router.post("/submitproduct",function(request,response,next){
+router.post("/submitproduct",isLoggedIn,function(request,response,next){
     var name=request.body.name;
     var des=request.body.des;
     var price=request.body.price;
@@ -176,5 +197,12 @@ router.post("/submitproduct",function(request,response,next){
 
 
 });
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/user/signin')
+}
 
 module.exports = router;
