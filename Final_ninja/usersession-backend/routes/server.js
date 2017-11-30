@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('54.241.134.246:27017, 54.183.129.56:27018, 54.183.244.236:27019/users?replicaSet=prathmesh-replica-set');
 //mongoose.connect('localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping');
 //mongoose.connect('13.56.179.55:27017, 13.57.12.172:27018, 52.53.176.18:27019/ninja?replicaSet=shopping');
 
@@ -27,7 +27,7 @@ if(!user){
     return res.status(500).json({"Message" :"User Not Found", status:"false",code:"500"});
 
 }
-if(req.body.password!= user.password){
+if(req.body.password!=user.password){
     return res.status(500).json({"Message" :"Incorrect password", status:"false",code:"500"});
 }
     req.session.userId = user._id;

@@ -17,7 +17,8 @@ var mongoose = require('mongoose');
 var validator = require('express-validator');
 var mongoStore = require('connect-mongo')(session);
 
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('54.241.134.246:27017, 54.183.129.56:27018, 54.183.244.236:27019/users?replicaSet=prathmesh-replica-set');
+//mongoose.connect('54.241.134.246:27017/users');
 var userRoutes = require('./routes/user')
 require('./config/passport');
 

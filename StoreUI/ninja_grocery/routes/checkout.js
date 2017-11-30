@@ -1,78 +1,43 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-var moment = require('moment');
-const uuidv4 = require('uuid/v4');
-var sync = require('synchronize');
-var fiber = sync.fiber;
-var awaits = sync.await;
-var defer = sync.defer;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    errMsg = "";
+
     //Check cart session and if not exists, redirect to prduct catalogue
 
     //Obtain total from shopping cart cart.total from new Cart object
-    var options = {
-                  // Add AWS URI
-                  uri: 'http://localhost:9000/getusercart',
-                  method: 'POST',
-                  json: {"customer_id" : "Rafa"} //Non existent user not handled
-            };
-
-            request(options, function (error, response, body) {
-                        if (!error && response.statusCode == 200) {
-                            total = body['usercart']['Total'];
-                            console.log("*Obtained total from Shopping cat DB: "+total);
-                            console.log("\n*Rendering checkout page ");
-                            res.render('shop/checkout', { title: 'Checkout',layout: 'checkout',total:total, 'errMsg':errMsg, 'noError':!errMsg});
-                        }
-                        else{
-                          console.log(error)
-                        }
-            });
-
     //var errMsg = req.flash("error")[0];
-    
-    //res.render('shop/checkout', { title: 'Checkout',layout: 'checkout',total:total, 'errMsg':errMsg, 'noError':!errMsg});
+    errMsg = "";
+    res.render('shop/checkout', { title: 'Checkout',layout: 'checkout',total:'100', 'errMsg':errMsg, 'noError':!errMsg});
 });
 
 
 router.post('/', function(req,res, next){
-	
-  // Check for session
-
-
-
-  //Generate OrderID
-
-  orderId = uuidv4();
-  console.log("*OrderId generated: "+orderId);
+  console.log(res.body);
+	// Check for session
 
 
   // Create cart object
   var stripe = require("stripe")("sk_test_LvSqqsFzgTYd7MWfwjNTL4Un");
   stripe.charges.create({
-          amount: req.body.total * 100, //cart.price * 100
+          amount: 20000, //cart.price * 100
           currency: "usd",
           source: req.body.stripeToken, // obtained with Stripe.js
           description: "Charge for Ninja Cart"
     }, function(err, charge) {
-            //console.log(charge)
             if(err){
-            	console.log('*Payment failed');
+            	console.log('Payment failed');
               //Redirect to checkout page
-
             }
-            console.log('*Payment successful');
-
-            var address = req.body.address;
+            console.log('Payment successful');
+            //Clear cart
 
             //Write payment to DB
 
-            var paymentObject = {"OrderId" : orderId,  "CustomerId" : "Rafa",   "Total" : parseFloat(req.body.total), "Timestamp" : moment().format('YYYY-MM-DD HH:mm:ss Z')};
-            console.log('*Payment object created: \n'+JSON.stringify(paymentObject));
+            var paymentObject = {"OrderId" : "1234",  "CustomerId" : "John",   "Total" : 100.50, "Timestamp" : "20170202"};
+
             var options = {
                   // Add AWS URI
                   uri: 'http://localhost:5000/payment',
@@ -82,80 +47,41 @@ router.post('/', function(req,res, next){
 
             request(options, function (error, response, body) {
                         if (!error && response.statusCode == 200) {
-                          console.log("*Wrote Payment to DB!");
+                          console.log("Wrote Payment to DB!");
                         }
             });
 
+            //Write order to DB
 
-            // Get order for the user from Shopping Cart
-             var options = {
+            //Generate OrderID
+              var orderObject = {
+                    "OrderId" : "1234",   
+                    "CustomerId" : "John",   
+                    "ItemDetails" : {"Bananas":{"Qty":2,"Price":1.5},"Nachos":{"Qty":1,"Price":4.4}},
+                    "Total" : 32.5, 
+                    "Status" : "Order Placed",  
+                    "Timestamp" : "20170202", 
+                    "DeliveryAddress" : "#1 Washington Sq, San Jose, CA 95112"
+            }
+
+            var options = {
                   // Add AWS URI
-                  uri: 'http://localhost:9000/getusercart',
+                  uri: 'http://localhost:4000/order',
                   method: 'POST',
-                  json: {"customer_id" : "Rafa"} //Non existent user not handled
+                  json: orderObject
             };
 
             request(options, function (error, response, body) {
-
                         if (!error && response.statusCode == 200) {
-
-
-                          
-                          var items = {};
-                          for(var i=0;i<body['usercart']['ItemDetails'].length;i+=1){
-                                items[body['usercart']['ItemDetails'][i]['product_name']]={'Qty':body['usercart']['ItemDetails'][i]['product_quantity'],'Price':parseFloat(body['usercart']['ItemDetails'][i]['product_price'])};
-                          }
-                          //console.log(body['usercart']);
-                            var orderObject = {
-                                    "OrderId" : orderId,   
-                                    "CustomerId" : body['usercart']['CustomerId'],   
-                                    "ItemDetails" : items,
-                                    "Total" : body['usercart']['Total'], 
-                                    "Status" : "Order Placed",  
-                                    "Timestamp" : moment().format('YYYY-MM-DD HH:mm:ss Z'), 
-                                    "DeliveryAddress" : address
-                            };
-                    
-
-                            console.log("*OrderObject created:\n"+JSON.stringify(orderObject));
-
-                           var options = {
-                                  // Add AWS URI
-                                  uri: 'http://localhost:4000/order',
-                                  method: 'POST',
-                                  json: orderObject
-                            };
-
-                            request(options, function (error, response, body) {
-                                        if (!error && response.statusCode == 200) {
-                                          console.log("*Wrote Order to DB!");
-                                        }
-                            });
-
-                            var options = {
-                                      // Add AWS URI
-                                      uri: 'http://localhost:9000/removeusercart',
-                                      method: 'POST',
-                                      json: {"customer_id":"Rafa"}
-                                };
-
-                                //Clear cart
-                                request(options, function (error, response, body) {
-                                            if (!error && response.statusCode == 200) {
-                                              console.log("*Removed items from cart!");
-                                            }
-                                    //Redirect to success page
-                                    res.redirect('/checkout/success');
-                              });
-
-
+                          console.log("Wrote Order to DB!");
                         }
-                        else{
-                          console.log(error)
-                        }
-
             });
-           
+
+            
+
+
+            //Redirect to success page
+            res.redirect('/checkout/success');
     });
 });
 
