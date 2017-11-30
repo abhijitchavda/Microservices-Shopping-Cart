@@ -14,6 +14,9 @@ import (
     "gopkg.in/mgo.v2/bson"
     //"time"
     //"bytes"
+    //"reflect"
+    "strings"
+    "net"
 )
 
 /* 
@@ -25,12 +28,12 @@ Variable declaration and initialization
 // MongoDB Configuration
 
 //Local DB payment configuration 
-var mongodb_server = "localhost:27015"
+var mongodb_server = "localhost:27017"
 var mongodb_database = "payments"
 var mongodb_collection = "payment"
 
 //Local DB payment log configuration 
-var mongodb_log_server = "localhost:27015"
+var mongodb_log_server = "localhost:27017"
 var mongodb_log_database = "log"
 var mongodb_log_collection = "payments"
 
@@ -77,6 +80,7 @@ func init(){
 Log Writer implementation to write logs to Logging module
 */
 func (mw *MongoWriter) Write(p []byte) (n int, err error) {
+	fmt.Println(strings.Split(string(p)," ")[0]);
     //c := mw.sess.DB(mongodb_log_database).C(mongodb_log_collection)
     /*err = c.Insert(bson.M{
         "created": time.Now(),
@@ -121,6 +125,13 @@ func ping(formatter *render.Render) http.HandlerFunc {
 		fmt.Println("Ping - Payment API running");
 		result := "Payment API - Running"
 		//log.Println("Test ping log"+",hi")
+
+		ip,_,_:=net.SplitHostPort(req.RemoteAddr);
+		//fmt.Println(req)
+		log.Println(ip,req.URL.Path,req.Host)
+		//val,_ := json.Marshal(log_msg)
+		//json.NewDecoder({'msg':"Payment API - Running",'ip':ip,'url':req.URL.Path,'host':req.Host}).Decode(&data)
+		//log.Println(val)
 		formatter.JSON(w, http.StatusOK, result);
 	}
 }

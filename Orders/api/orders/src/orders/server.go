@@ -25,13 +25,13 @@ Variable declaration and initialization
 
 //Local DB payment configuration 
 
-var mongodb_server = "localhost:27015"
+var mongodb_server = "localhost:27017"
 var mongodb_database = "orders"
 var mongodb_collection = "order"
 
 //Local DB payment log configuration 
 
-var mongodb_log_server = "localhost:27015"
+var mongodb_log_server = "localhost:27017"
 var mongodb_log_database = "log"
 var mongodb_log_collection = "orders"
 
