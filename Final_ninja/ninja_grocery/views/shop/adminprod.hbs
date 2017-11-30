@@ -1,0 +1,47 @@
+
+<form method="post" action="/productcatalog/submitproduct">
+  <div class="col-md-6 col-md-offset-2">
+  <div class="form-group">
+    <label class="col-form-label" for="formGroupExampleInput">Product name</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="input product name" name="name">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label" for="formGroupExampleInput2">Product Description</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="input description" name="des">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label" for="formGroupExampleInput2">price</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="input price" name="price">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">catagory</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="cat">
+      <option>bars</option>
+      <option>beverages</option>
+      <option>dairy</option>
+      <option>baked</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">avg ratings</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="rat">
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option>
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="col-form-label" for="formGroupExampleInput2">image</label>
+    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="input image path" name="image">
+  </div>
+  <input type="submit" class="btn btn-success" value="Send">
+<h3 style="color:black;">{{stat}}</h3>
+</div>
+</form>
