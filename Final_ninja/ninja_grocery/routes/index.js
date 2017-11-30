@@ -8,10 +8,23 @@ var passport = require('passport');
 var userid;
 var product;
 var catagori;
+var flag=0;
 var productChunks=[];
 /* GET home page. */
+
+router.get('/:cid',function(req,res,next){
+
+userid=req.params.cid;
+flag=1;
+console.log("cid passes by params"+req.params.cid);
+res.redirect('/productcatalog');
+});
+
+
+
+
 router.get('/',isLoggedIn, function(req, res, next) {
-    console.log("#######"+req.session.passport.user);
+    //console.log("#######"+req.session.passport.user);
     Request.get('http://'+serverippc+':'+serverportpc+'/mostfav', function (error, response, body) {
         if (error) {
             throw error;
@@ -72,15 +85,16 @@ router.get('/catagory/sort/:variant/:type',isLoggedIn, function(req, res, next) 
 
 router.get('/addtocart/:cid',isLoggedIn,function(req, res, next){
    var it=req.params.cid;
-   var c_id=req.session.passport.user;
+   var c_id;
+   //var c_id=req.session.passport.user;
    //var c_id=request.session.passport.user;
-   console.log("this is the uid---->"+c_id);
-    //if(request.session.passport.user){
-    //c_id=request.session.passport.user;    
-   // }
-    //else if(flag==1){
-    //c_id=userid;
-    //}
+   //console.log("this is the uid---->"+cid);
+    if(req.session.passport.user){
+    c_id=req.session.passport.user;    
+    }
+    else if(flag==1){
+    c_id=userid;
+    }
 
 
     Request.get('http://'+serverippc+':'+serverportpc+'/product/'+it, function (error, response, body) {
@@ -199,7 +213,7 @@ router.post("/submitproduct",isLoggedIn,function(request,response,next){
 });
 
 function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated()||flag==1){
         return next();
     }
     res.redirect('/user/signin')
