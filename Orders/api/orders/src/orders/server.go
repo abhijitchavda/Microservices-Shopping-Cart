@@ -6,10 +6,8 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/codegangsta/negroni"
-	//"github.com/streadway/amqp"
 	"github.com/gorilla/mux"
 	"github.com/unrolled/render"
-	//"github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2"
     "gopkg.in/mgo.v2/bson"
     "time"
@@ -23,25 +21,25 @@ Variable declaration and initialization
 
 // MongoDB Configuration
 
-//Local DB payment configuration 
+//Local DB orders configuration 
 
-var mongodb_server = "localhost:27017"
+/*var mongodb_server = "localhost:27017"
 var mongodb_database = "orders"
 var mongodb_collection = "order"
 
-//Local DB payment log configuration 
+//Local DB orders log configuration 
 
 var mongodb_log_server = "localhost:27017"
 var mongodb_log_database = "log"
-var mongodb_log_collection = "orders"
+var mongodb_log_collection = "orders"*/
 
-//DB payment configuration 
+//DB orders configuration 
 
-//var mongodb_server = "mongodb://54.153.119.128,52.53.219.137,52.53.240.155/ninjacart?replicaSet=mongo-replica-set"
-//var mongodb_database = "ninjacart"
-//var mongodb_collection = "orders"
+var mongodb_server = "mongodb://54.183.209.156:27017,54.215.133.223:27018,54.183.237.206:27019/ninjacart?replicaSet=mongo-replica-set"
+var mongodb_database = "ninjacart"
+var mongodb_collection = "orders"
 
-//DB payment log configuration 
+//DB orders log configuration 
 
 //var mongodb_log_server = "localhost:27015"
 //var mongodb_log_database = "log"
@@ -65,13 +63,13 @@ func init(){
 	} 
 
 	//Code to create a session to the logging module DB
-	sess,err := mgo.Dial(mongodb_log_server)
+	/*sess,err := mgo.Dial(mongodb_log_server)
 	if(err!=nil){
 		fmt.Println("Unable to connect to logger DB..Proceeding without logging to Logger sub-module")
 	}else{
 		mw = &MongoWriter{sess}
 		log.SetOutput(mw)
-	}
+	}*/
 
 	//Start orderProcessor as a Go Routine to process orders
 	go orderProcessor()
@@ -82,14 +80,14 @@ func init(){
 Log Writer implementation to write logs to Logging module
 */
 func (mw *MongoWriter) Write(p []byte) (n int, err error) {
-    c := mw.sess.DB(mongodb_log_database).C(mongodb_log_collection)
+   /* c := mw.sess.DB(mongodb_log_database).C(mongodb_log_collection)
     err = c.Insert(bson.M{
         "created": time.Now(),
         "msg":     string(p),
     })
     if err != nil {
         return
-    }
+    }*/
     return len(p), nil
 }
 
@@ -165,7 +163,6 @@ func ping(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Ping - Payment API running");
 		result := "Orders API - Running"
-		log.Println("Test ping log"+",hi")
 		formatter.JSON(w, http.StatusOK, result);
 	}
 }
@@ -186,15 +183,14 @@ func orderHandler(formatter *render.Render) http.HandlerFunc {
         c := session.DB(mongodb_database).C(mongodb_collection)
         params := mux.Vars(req)
         var customer_id string = params["customer_id"]
-        fmt.Println(customer_id)
+        fmt.Println("Placing the order for: "+customer_id)
         var result []bson.M
 		err = c.Find(bson.M{"customerId" : customer_id}).All(&result)
 		if err != nil {
                 log.Fatal(mux.Vars(req))
         }
-
-        fmt.Println("Orders are:\n", result)
-        log.Println("Test log")
+        fmt.Println("\nObtained orders from DB..")
+        fmt.Println("\nOrders are:\n", result)
 		formatter.JSON(w, http.StatusOK, result)
 
 	}
@@ -210,6 +206,7 @@ func newOrderHandler(formatter *render.Render) http.HandlerFunc {
 			fmt.Println("Orders API - Unable to obtain request body")
 			panic(err)
 		}
+		fmt.Println("\nWriting order to DB")
 		go workerHandler(data,Order_channel)
 		formatter.JSON(w, http.StatusOK, data)
 	}

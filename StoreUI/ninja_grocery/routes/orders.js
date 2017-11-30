@@ -3,17 +3,10 @@ var router = express.Router();
 var Request = require('request');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-
-	//Check for valid user
-
-	/*if(condition){
-		
-	}
-	else{*/
+router.get('/', isLoggedIn,function(req, res, next) {
 	
 	
-	var userId = 'Jim';
+	var userId = req.session.passport.user;
 	Request.get('http://localhost:4000/order/'+userId, function (error, response, body) {
  	        if (error) {
                 throw error;
@@ -45,7 +38,7 @@ router.get('/', function(req, res, next) {
 	            	
 	            	//console.log(order_data[i]["orderId"]);
             	}
-            	res.render('shop/orders', { title: 'Orders', orders:order_data, valid_user:false, hasOrder:true});
+            	res.render('shop/orders', { title: 'Orders', orders:order_data, valid_user:true, hasOrder:true});
             }
             
             //res.render('shop/index', { title: 'ninja ',products: productChunks});
@@ -53,5 +46,12 @@ router.get('/', function(req, res, next) {
 });
     //} //End of if
 });
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/user/signin')
+}
 
 module.exports = router;

@@ -6,17 +6,16 @@ import (
 	"net/http"
 	"encoding/json"
 	"github.com/codegangsta/negroni"
-	//"github.com/streadway/amqp"
 	"github.com/gorilla/mux"
 	"github.com/unrolled/render"
-	//"github.com/satori/go.uuid"
 	"gopkg.in/mgo.v2"
     "gopkg.in/mgo.v2/bson"
-    //"time"
-    //"bytes"
-    //"reflect"
+    "time"
+    "bytes"
     "strings"
     "net"
+    "io/ioutil"
+    "strconv"
 )
 
 /* 
@@ -28,26 +27,26 @@ Variable declaration and initialization
 // MongoDB Configuration
 
 //Local DB payment configuration 
-var mongodb_server = "localhost:27017"
+/*var mongodb_server = "localhost:27017"
 var mongodb_database = "payments"
-var mongodb_collection = "payment"
+var mongodb_collection = "payment"*/
 
 //Local DB payment log configuration 
 var mongodb_log_server = "localhost:27017"
-var mongodb_log_database = "log"
-var mongodb_log_collection = "payments"
+var mongodb_log_database = "logSystem"
+var mongodb_log_collection = "paymentactivitylogs"
 
 //DB payment configuration 
 
-//var mongodb_server = "mongodb://54.153.119.128,52.53.219.137,52.53.240.155/ninjacart?replicaSet=mongo-replica-set"
-//var mongodb_database = "ninjacart"
-//var mongodb_collection = "payments"
+var mongodb_server = "mongodb://54.183.209.156:27017,54.215.133.223:27018,54.183.237.206:27019/ninjacart?replicaSet=mongo-replica-set"
+var mongodb_database = "ninjacart"
+var mongodb_collection = "payments"
 
 //DB payment log configuration 
 
 //var mongodb_log_server = "localhost:27015"
-//var mongodb_log_database = "log"
-//var mongodb_log_collection = "payments"
+//var mongodb_log_database = "logSystem"
+//var mongodb_log_collection = "paymentactivitylogs"
 
 
 /*
@@ -80,15 +79,35 @@ func init(){
 Log Writer implementation to write logs to Logging module
 */
 func (mw *MongoWriter) Write(p []byte) (n int, err error) {
-	fmt.Println(strings.Split(string(p)," ")[0]);
-    //c := mw.sess.DB(mongodb_log_database).C(mongodb_log_collection)
-    /*err = c.Insert(bson.M{
-        "created": time.Now(),
-        "msg":     string(p),
-    })
+	var log_info = strings.Split(string(p)," ");
+	
+
+	client := http.Client{}
+	var jsonprep string = `{"_id":"`+strings.TrimSpace(log_info[2])+`"}`
+    var jsonStr = []byte(jsonprep)
+    url:="http://localhost:7000/getEmail"
+    req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+    req.Header.Set("Content-Type", "application/json")
+    resp, err := client.Do(req)
+
+   	body, err := ioutil.ReadAll(resp.Body)
+  	
+
+    email:=strings.Split(strings.Split(string(body),",")[0],":")[1]
+    email = email[1:len(email)-1]
+    amount,_:=strconv.ParseFloat(strings.TrimSpace(log_info[3]), 64)
+
+   c := mw.sess.DB(mongodb_log_database).C(mongodb_log_collection)
+    err = c.Insert(bson.M{
+        "timestamp": time.Now(),
+        "username": email,
+        "message" : email+" has paid successfully",
+        "amount": amount,//Convert to float
+		"requestUrl": strings.TrimSpace(log_info[4]),
+		"remoteIp":strings.TrimSpace(log_info[5])})
     if err != nil {
         return
-    }*/
+    }
     return len(p), nil
 }
 
@@ -124,14 +143,6 @@ func ping(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Ping - Payment API running");
 		result := "Payment API - Running"
-		//log.Println("Test ping log"+",hi")
-
-		ip,_,_:=net.SplitHostPort(req.RemoteAddr);
-		//fmt.Println(req)
-		log.Println(ip,req.URL.Path,req.Host)
-		//val,_ := json.Marshal(log_msg)
-		//json.NewDecoder({'msg':"Payment API - Running",'ip':ip,'url':req.URL.Path,'host':req.Host}).Decode(&data)
-		//log.Println(val)
 		formatter.JSON(w, http.StatusOK, result);
 	}
 }
@@ -151,13 +162,13 @@ func paymentHandler(formatter *render.Render) http.HandlerFunc {
         c := session.DB(mongodb_database).C(mongodb_collection)
         params := mux.Vars(req)
         var order_id string = params["order_id"]
-        fmt.Println("Fetching order#: ",order_id)
+        fmt.Println("\nFetching order#: ",order_id)
         var result bson.M
 		err = c.Find(bson.M{"orderId" : order_id}).One(&result)
 		if err != nil {
                 log.Fatal(mux.Vars(req))
         }
-        fmt.Println("Payment made is:", result)
+        fmt.Println("\nPayment made is:\n", result)
 		formatter.JSON(w, http.StatusOK, result)
 
 	}
@@ -169,10 +180,12 @@ func newPaymentHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		var data payment
 		err := json.NewDecoder(req.Body).Decode(&data)
+		ip,_,_:=net.SplitHostPort(req.RemoteAddr)
 		if err!=nil{
 			fmt.Println("Payments API - Unable to obtain request body")
 			panic(err)
 		}
+		log.Println(data.CustomerId,data.Total,req.URL.Path,ip)
 		fmt.Println("New payment received")
 		fmt.Println("Payment recorded in DB")
 		go workerHandler(data,Payment_channel)

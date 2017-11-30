@@ -3,13 +3,10 @@ var router = express.Router();
 var request = require('request');
 var moment = require('moment');
 const uuidv4 = require('uuid/v4');
-var sync = require('synchronize');
-var fiber = sync.fiber;
-var awaits = sync.await;
-var defer = sync.defer;
+var passport = require('passport');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',isLoggedIn, function(req, res, next) {
     errMsg = "";
     //Check cart session and if not exists, redirect to prduct catalogue
 
@@ -18,13 +15,13 @@ router.get('/', function(req, res, next) {
                   // Add AWS URI
                   uri: 'http://localhost:9000/getusercart',
                   method: 'POST',
-                  json: {"customer_id" : "Rafa"} //Non existent user not handled
+                  json: {"customer_id" : req.session.passport.user} //Non existent user not handled
             };
 
             request(options, function (error, response, body) {
                         if (!error && response.statusCode == 200) {
                             total = body['usercart']['Total'];
-                            console.log("*Obtained total from Shopping cat DB: "+total);
+                            console.log("*Obtained total from Shopping cart DB: "+total);
                             console.log("\n*Rendering checkout page ");
                             res.render('shop/checkout', { title: 'Checkout',layout: 'checkout',total:total, 'errMsg':errMsg, 'noError':!errMsg});
                         }
@@ -39,7 +36,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/', function(req,res, next){
+router.post('/', isLoggedIn, function(req,res, next){
 	
   // Check for session
 
@@ -71,7 +68,7 @@ router.post('/', function(req,res, next){
 
             //Write payment to DB
 
-            var paymentObject = {"OrderId" : orderId,  "CustomerId" : "Rafa",   "Total" : parseFloat(req.body.total), "Timestamp" : moment().format('YYYY-MM-DD HH:mm:ss Z')};
+            var paymentObject = {"OrderId" : orderId,  "CustomerId" : req.session.passport.user,   "Total" : parseFloat(req.body.total), "Timestamp" : moment().format('YYYY-MM-DD HH:mm:ss Z')};
             console.log('*Payment object created: \n'+JSON.stringify(paymentObject));
             var options = {
                   // Add AWS URI
@@ -92,7 +89,7 @@ router.post('/', function(req,res, next){
                   // Add AWS URI
                   uri: 'http://localhost:9000/getusercart',
                   method: 'POST',
-                  json: {"customer_id" : "Rafa"} //Non existent user not handled
+                  json: {"customer_id" : req.session.passport.user} //Non existent user not handled
             };
 
             request(options, function (error, response, body) {
@@ -136,7 +133,7 @@ router.post('/', function(req,res, next){
                                       // Add AWS URI
                                       uri: 'http://localhost:9000/removeusercart',
                                       method: 'POST',
-                                      json: {"customer_id":"Rafa"}
+                                      json: {"customer_id":req.session.passport.user}
                                 };
 
                                 //Clear cart
@@ -167,5 +164,12 @@ router.get('/success', function(req, res, next) {
     
     res.render('shop/success');
 });
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/user/signin')
+}
 
 module.exports = router;
