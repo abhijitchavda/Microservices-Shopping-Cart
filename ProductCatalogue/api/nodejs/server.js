@@ -1,8 +1,8 @@
 var MongoClient = require('mongodb').MongoClient
-			, assert = require('assert');
-var murl = "mongodb://localhost:27017/catalog";
+                        , assert = require('assert');
 //var murl = "mongodb://localhost:27017,localhost:27018,localhost:27019/catalog?replicaSet=abhijit";
-//var murl = "mongodb://18.217.14.61:27017,18.221.170.100:27018,18.216.89.104:27019/catalog?replicaSet=abhijit";
+var murl = "mongodb://18.217.172.152:27017,18.216.213.231:27018,18.217.114.5:27019/catalog?replicaSet=abhijit&connectTimeoutMS=500";
+//var murl="mongodb://localhost:27017/catalog"; 
 var http = require("http");
 var constantm=require('./constants');
 var url = require('url');
@@ -27,119 +27,146 @@ app.use(function(req, res, next) {
 
 app.get('/',function(request,response,next){
 response.status(200);
-response.send("pinging");
+response.json({"code":200,"status":"product catalog api up"});
 });
 
 app.get('/mostfav', function (request, response, next) {
-			response.setHeader("Content-Type","application/json");
-			MongoClient.connect(murl, function(err, db) {  //get famous item for home page
-  			assert.equal(null, err);
-  			db.collection("catalogitems").find().sort({avg_ratings:-1}).toArray(function(err, result) {
-    		if (err) throw err;
-    		//console.dir('http://'+ip.address()+':3000/mostfav');
+                        response.setHeader("Content-Type","application/json");
+                        MongoClient.connect(murl, function(err, db) {  //get famous item for home page
+                        assert.equal(null, err);
+                        db.collection("catalogitems").find().sort({avg_ratings:-1}).toArray(function(err, result) {
+                if (err){
+          response.json({"code":500,"msg":"error in mostfav. find data"});
+          response.end();
+        }
+                //console.dir('http://'+ip.address()+':3000/mostfav');
 console.dir('http://'+request.ip+':3000/mostfav');
-    		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
-    		}
-    		response.send(result);
-    		response.end();
-			});
-			db.close()
-		});  	
+                for (i=0;i<result.length;i++){
+                        //result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+          result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+                  //result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+        }
+                response.send(result);
+                response.end();
+                        });
+                        db.close()
+                });
 });
 
 app.get('/catagory/:catagory', function (request, response, next) {
-			var cat=request.params.catagory;
-			response.setHeader("Content-Type","application/json");
-			MongoClient.connect(murl, function(err, db) {  //get content for perticular catagory
-  			assert.equal(null, err);
-  			db.collection("catalogitems").find({"catagory":cat}).toArray(function(err, result) {
-    		if (err) throw err;
-    		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
-    		}
-    		response.json(result);
-    		response.end();
-			});
-			db.close()
-		});
+                        var cat=request.params.catagory;
+                        response.setHeader("Content-Type","application/json");
+                        MongoClient.connect(murl, function(err, db) {  //get content for perticular catagory
+                        assert.equal(null, err);
+                        db.collection("catalogitems").find({"catagory":cat}).toArray(function(err, result) {
+                if (err){
+          response.json({"code":500,"msg":"error in catagory/:catagory. find data by catagory"});
+          response.end();
+        }
+                for (i=0;i<result.length;i++){
+                        //result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+                  result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+        }
+                response.json(result);
+                response.end();
+                        });
+                        db.close()
+                });
 });
+
 app.get('/catagory/:catagory/sort/:variant/:type', function (request, response, next) {
-			var cat=request.params.catagory;
-			var variant=request.params.variant;
-			var asort = {};
-  			asort[variant] = 1;
-  			var bsort = {};
-  			bsort[variant] = -1;
-			response.setHeader("Content-Type","application/json");
-			MongoClient.connect(murl, function(err, db) {  //sort based on price,avg_ratings and hightolow and lowtohigh
-  			assert.equal(null, err);
-  			if (request.params.type=="hightolow")
-  			{
-  				db.collection("catalogitems").find({"catagory":cat}).sort(bsort).toArray(function(err, result) {
-    			if (err) throw err;
-    			for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
-    		}
-    			response.json(result);
-    			response.end();
-  				});  
-  			}
-  			if (request.params.type=="lowtohigh")
-  			{
-  				db.collection("catalogitems").find({"catagory":cat}).sort(asort).toArray(function(err, result) {
-    			if (err) throw err;
-    			for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
-    		}
-    			response.json(result);
-    			response.end();
-  				});  
-  			}
-  			db.close()
-		});
+                        var cat=request.params.catagory;
+                        var variant=request.params.variant;
+                        var asort = {};
+                        asort[variant] = 1;
+                        var bsort = {};
+                        bsort[variant] = -1;
+                        response.setHeader("Content-Type","application/json");
+                        MongoClient.connect(murl, function(err, db) {  //sort based on price,avg_ratings and hightolow and lowtohigh
+                        assert.equal(null, err);
+                        if (request.params.type=="hightolow")
+                        {
+                                db.collection("catalogitems").find({"catagory":cat}).sort(bsort).toArray(function(err, result) {
+                        if (err){
+          response.json({"code":500,"msg":"error in catagory/:catagory/sort/variant/type/hightolow. find data by catagory/sort"});
+          response.end();
+        }
+                        for (i=0;i<result.length;i++){
+                        result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+          //result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+                }
+                        response.json(result);
+                        response.end();
+                                });
+                        }
+                        if (request.params.type=="lowtohigh")
+                        {
+                                db.collection("catalogitems").find({"catagory":cat}).sort(asort).toArray(function(err, result) {
+                        if (err){
+          response.json({"code":500,"msg":"error in catagory/:catagory/sort/variant/type/lowtohigh. find data by catagory/sort"});
+          response.end();
+        }
+                        for (i=0;i<result.length;i++){
+                        result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+          //result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+                }
+                        response.json(result);
+                        response.end();
+                                });
+                        }
+                        db.close()
+                });
 });
 
 app.get('/catagory/:catagory/filter/price', function (request, response, next) {
-			var cat=request.params.catagory;
-			var upperl=parseInt(request.query.ul);
-			var lowerl=parseInt(request.query.ll);
-			var query = {
-							catagory: cat,
-    						price: {$gt:lowerl,$lt:upperl}
-						};
-			response.setHeader("Content-Type","application/json");
-			MongoClient.connect(murl, function(err, db) {  //filter based on price with min and max value
-  			assert.equal(null, err);
-			db.collection("catalogitems").find(query).sort({price:1}).toArray(function(err, result) {
-    		if (err) throw err;
-    		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
-    		}
-    		response.json(result);
-    		response.end();
-  			});
-  			db.close()
-		});
+                        var cat=request.params.catagory;
+                        var upperl=parseInt(request.query.ul);
+                        var lowerl=parseInt(request.query.ll);
+                        var query = {
+                                                        catagory: cat,
+                                                price: {$gt:lowerl,$lt:upperl}
+                                                };
+                        response.setHeader("Content-Type","application/json");
+                        MongoClient.connect(murl, function(err, db) {  //filter based on price with min and max value
+                        assert.equal(null, err);
+                        db.collection("catalogitems").find(query).sort({price:1}).toArray(function(err, result) {
+                if (err){
+          response.json({"code":500,"msg":"error in catagory/:catagory/filter/price. find data by catagory/filter"});
+          response.end();
+        }
+                for (i=0;i<result.length;i++){
+                        result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+          //result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+                }
+                response.json(result);
+                response.end();
+                        });
+                        db.close()
+                });
 });
 
-app.get('/product/:id', function (request, response, next) {
-			var id=new ObjectID(request.params.id);
-			response.setHeader("Content-Type","application/json");
-			MongoClient.connect(murl, function(err, db) {  //get product details
-  			assert.equal(null, err);
-			db.collection("catalogitems").find({_id:id}).toArray(function(err, result) {
-    		if (err) throw err;
-    		for (i=0;i<result.length;i++){
-    			result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
-    		}
-    		response.json(result);
-    		response.end();
-  			});  
-			db.close()
-		});  			
 
-});	
+app.get('/product/:id', function (request, response, next) {
+                        var id=new ObjectID(request.params.id);
+                        response.setHeader("Content-Type","application/json");
+                        MongoClient.connect(murl, function(err, db) {  //get product details
+                        assert.equal(null, err);
+                        db.collection("catalogitems").find({_id:id}).toArray(function(err, result) {
+                if (err){
+          response.json({"code":500,"msg":"error in product/:id. find data by productid"});
+          response.end();
+        }
+                for (i=0;i<result.length;i++){
+                        result[i].img="http://"+constantm.ips+":"+constantm.port+result[i].img;
+          //result[i].img="http://"+ip.address()+":"+constantm.port+result[i].img;
+                }
+                response.json(result);
+                response.end();
+                        });
+                        db.close()
+                });
+
+});
 
 
 app.post('/addproduct',function(request,response,next){
@@ -153,11 +180,18 @@ app.post('/addproduct',function(request,response,next){
       MongoClient.connect(murl, function(err, db) {  //get product details
             assert.equal(null, err);
             db.collection("catalogitems").find({"name":prodname,"catagory":prodcat},{name:1}).toArray(function(err, res) {
-            if (err) throw err;
+            if (err){
+          response.json({"code":500,"msg":"error in addproduct. write addproduct"});
+          response.end();
+        }
               if (res.length==0) {
 
                     db.collection("catalogitems").insert({"name":prodname,"description":proddes,"price":prodprice,"catagory":prodcat,"avg_ratings":prodrat,"img":prodimg},function(err, resul) {
-                                        assert.equal(err, null);
+                                        //assert.equal(err, null);
+                                        if (err){
+                                                response.json({"code":500,"msg":"error in addproduct. insert addproduct"});
+                                                response.end();
+                                                }
                                               if(resul.result.ok==1)
                                               {
                                               response.json({"code":200,"msg":"inserted"});
@@ -167,13 +201,13 @@ app.post('/addproduct',function(request,response,next){
                                         });
               }
               else{
-                
+
                   response.json({"code":400,"msg":"item already exist"})
                   response.end();
                   db.close();
               }
-              
-        });  
+
+        });
 
     });
 //console.log(prodname,proddes,prodprice,prodcat,prodrat,prodimg);
@@ -185,21 +219,11 @@ else{
 }
 });
 
+
+
 process.on('uncaughtException', function (err) {
-  console.log('Caught exception: ' + err);
+  console.log('Caught exception: error to connect mongodb' + err);
 
 });
 
-
-
 app.listen(constantm.port)
-
-/*
-{"name" : "snickers",
- "description" : "full of chocolate and nuts", 
- "price" : 5, 
- "catagory" : "bars", 
- "avg_ratings" : 5, 
- "img" : "/snickers.png" 
- }
- */

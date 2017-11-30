@@ -7,8 +7,14 @@
 
 function shopnow(){
 	//var request = new Request('/productcatalog', {method: 'GET'});
-	alert("Redirect to product catalog!");
-	//location.href="/productcatalog";
+	//alert("Redirect to product catalog!");
+	location.href="/productcatalog";
+}
+
+function loginnow(){
+	//var request = new Request('/productcatalog', {method: 'GET'});
+	//alert("Redirect to product catalog!");
+	location.href="/user/signin";
 }
 
 document.getElementById("button_shopnow").addEventListener("click", shopnow);
@@ -51,7 +57,7 @@ document.getElementById("button_shopnow").addEventListener("click", shopnow);
 		</div>
 		<br>
 		<div>
-		<button type="button" id="button_shopnow" class="btn btn-success" onClick="shopnow()">Shop Now</button>
+		<button type="button" id="button_shopnow" class="btn btn-success" onclick="shopnow()">Shop Now</button>
 		</div>
 
 
@@ -62,14 +68,14 @@ document.getElementById("button_shopnow").addEventListener("click", shopnow);
 		<img src="https://static1.squarespace.com/static/565d4416e4b042bda9cb9eb4/t/570b4d0a8a65e2e68d8cf79f/1460358418528/" align="middle"/>
 		</div>
 		<br>
-		<button type="button" id="button_shopnow" class="btn btn-success" onClick="shopnow()">Shop Now</button>
+		<button type="button" href="/productcatalog" id="button_shopnow" class="btn btn-success" onclick="shopnow()">Shop Now</button>
 	{{/if}}
 	
 {{else}}
 
 	<h1>Please login to view your orders!</h1>
 	<br>
-	<button type="button" id="button_login" class="btn btn-primary" onClick="login()">Login</button>
+	<button type="button" id="button_login" class="btn btn-primary" onclick="loginnow()">Login</button>
 	<div align="center" style="float:left">
 		<img src="https://github.com/lucid-ninja.png" />
 	</div>
