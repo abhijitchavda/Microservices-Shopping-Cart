@@ -3,14 +3,18 @@ var router = express.Router();
 var request=require('request');
 var passport = require('passport');
 
-var serverippc = "localhost";
-var serverportpc = "9000";
+
+//AWS EC2 Node Server--Shopping cart
+var constm=require('../public/javascripts/constants.js');
+var serveripsc = constm.server_ip_sc;
+var serverportsc = constm.server_port_sc;
+
 var productChunks = [];
 var quantity = 0;
 var price = 0;
 
 router.get('/',isLoggedIn, function(req, res, next) {
-console.log("heekk");
+    console.log("heekk");
     var headers = {
         'User-Agent':       'Super Agent/0.0.1',
         'Content-Type':     'application/x-www-form-urlencoded'
@@ -18,9 +22,10 @@ console.log("heekk");
 
     console.log("hsbd"+req.session.passport.user);
     var user = req.session.passport.user;
+
 // Configure the request
     var options = {
-        url: 'http://localhost:9000/getusercartdetails',
+        url: 'http://'+serveripsc+':'+serverportsc+'/getusercartdetails',
         method: 'POST',
         headers: headers,
         form: {"customer_id": user}

@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/ninja');
+//mongoose.connect('localhost:27017/ninja');
 //mongoose.connect('localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping');
 //mongoose.connect('13.56.179.55:27017, 13.57.12.172:27018, 52.53.176.18:27019/ninja?replicaSet=shopping');
+mongoose.connect('13.56.194.186:27017, 13.56.159.30:27018, 13.56.227.70:27019/ninja?replicaSet=shopping');
+
 
 var Schema = mongoose.Schema;
 var Cart = require('../models/Cart')
@@ -72,7 +74,7 @@ router.post('/getusercart', function(req, res, next) {
 });
 
 router.post('/getusercartdetails', function(req, res, next) {
-   console.log("Inside user cart");
+    console.log("Inside user cart");
     Cart.count({owner_user_id: req.body.customer_id}, function (err, count) {
         if (err) {
             console.log("Some Error Happened while matching owner ID");
@@ -318,5 +320,10 @@ router.post('/removeitemfromcart', function(req, res, next) {
     });
 });
 
+
+process.on('uncaughtException', function (err) {
+    console.log('Caught exception: error to connect mongodb' + err);
+
+});
 
 module.exports = router;
