@@ -58,8 +58,40 @@ sudo bash -c 'echo db3.shopping.com > /etc/hostname && hostname -F /etc/hostname
 
 sudo nano /etc/hosts
 127.0.0.1   localhost db1.shopping.com
-52.53.176.18 db3.shopping.com
-13.57.12.172 db2.shopping.com
-13.56.179.55 db1.shopping.com
+13.56.194.186 db1.shopping.com
+13.56.159.30 db2.shopping.com
+13.56.227.70 db3.shopping.com
+
+ssh -i /home/niralkk/Desktop/shopping_cart_backend/ninja.pem ec2-user@ec2-13-56-194-186.us-west-1.compute.amazonaws.com
+ssh -i /home/niralkk/Desktop/shopping_cart_backend/ninja.pem ec2-user@ec2-13-56-159-30.us-west-1.compute.amazonaws.com
+ssh -i /home/niralkk/Desktop/shopping_cart_backend/ninja.pem ec2-user@ec2-13-56-227-70.us-west-1.compute.amazonaws.com
+
+
+Node
+13.56.155.199
+ssh -i /home/niralkk/Desktop/shopping_cart_backend/ninja.pem ec2-user@ec2-13-56-155-199.us-west-1.compute.amazonaws.com
+
+54.193.113.183
+ssh -i /home/niralkk/Desktop/shopping_cart_backend/ninja.pem ec2-user@ec2-54-193-113-183.us-west-1.compute.amazonaws.com
+
+
+http://13.56.155.199:9000/ping
+
+http://54.193.113.183:9000/ping
+
+http://ninja-sc-load-108525937.us-west-1.elb.amazonaws.com:9000/ping
+
+http://ninja-sc-load-108525937.us-west-1.elb.amazonaws.com/ping
+
+forever start ./no
 
 C:\Windows\System32\Drivers\etc\hosts
+
+
+var express = require('express');
+var router = express.Router();
+var mongoose = require('mongoose');
+//mongoose.connect('localhost:27017/ninja');
+//mongoose.connect('localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping');
+//mongoose.connect('13.56.179.55:27017, 13.57.12.172:27018, 52.53.176.18:27019/ninja?replicaSet=shopping');
+mongoose.connect('13.56.194.186:27017, 13.56.159.30:27018, 13.56.227.70:27019/ninja?replicaSet=shopping');
