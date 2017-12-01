@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-//mongoose.connect('localhost:27017/shopping');
-mongoose.connect('54.241.134.246:27017, 54.183.129.56:27018, 54.183.244.236:27019/users?replicaSet=prathmesh-replica-set');
-//mongoose.connect('localhost:27017,localhost:27018,localhost:27019/ninja?replicaSet=shopping');
-//mongoose.connect('13.56.179.55:27017, 13.57.12.172:27018, 52.53.176.18:27019/ninja?replicaSet=shopping');
-
-var Schema = mongoose.Schema;
-var user = require('../models/user')
+var MongoClient = require('mongodb').MongoClient
+    , assert = require('assert');
+//var murl = "mongodb://54.241.134.246:27017, 54.183.129.56:27018, 54.183.244.236:27019/users?replicaSet=prathmesh-replica-set";
+var murl = "mongodb://54.241.134.246:27017/users";
+var ObjectID = require('mongodb').ObjectID;
+//mongoose.connect('54.241.134.246:27017, 54.183.129.56:27018, 54.183.244.236:27019/users?replicaSet=prathmesh-replica-set');
 //var user = mongoose.model('user');
 
 router.get('/', function(req, res, next) {
@@ -62,17 +60,16 @@ router.post('/getSignUp', function(req, res, next) {
 
 router.post('/getEmail',function(req,res,next){
     var userid = req.body._id;
-    console.log("@@@" + userid);
-    /*var myObj =
-        { _id: req.body._id};*/
-var id = mongoose.Types.ObjectId(userid);
-    console.log(id);
-    user.findOne( {_id: userid} ,function(err, user){
-        if(err){
-            return res.status(500).json({"Message" :"Incorrect password", status:"false",code:"500"});
-        }
-        console.log(user);
-        return res.status(200).json({email :user.email, status:"true",code:"200"});
+    MongoClient.connect(murl, function(err,db){
+        assert.equal(null,err);
+        console.log(userid);
+        db.collection("users1").find({}, function(err,user){
+            if(err){
+                return res.status(500).json({"Message" :"Incorrect password", status:"false",code:"500"});
+            }                                                            
+            console.log(user);
+            return res.status(200).json({id :user, status:"true",code:"200"});
+        });
     });
 
 });
