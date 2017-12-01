@@ -4,6 +4,10 @@ var Request=require('request');
 var constm=require('../public/javascripts/constants.js');
 var serverippc = constm.server_ip_pc;
 var serverportpc=constm.server_port_pc;
+
+var serveripsc = constm.server_ip_sc;
+var serverportsc = constm.server_port_sc;
+
 var passport = require('passport');
 var userid;
 var product;
@@ -120,7 +124,7 @@ router.get('/addtocart/:cid',isLoggedIn,function(req, res, next){
 // Configure the request
         console.log("The user is:"+c_id);
         var options = {
-            url: 'http://localhost:9000/additemtocart',//add shopping cart serverip
+            url: 'http://'+serveripsc+':'+serverportsc+'/additemtocart',//add shopping cart serverip
             method: 'POST',
             headers: headers,
             form: {'customer_id':c_id,'product_id': data[0]._id,
