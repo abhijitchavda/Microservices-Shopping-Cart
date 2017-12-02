@@ -85,7 +85,7 @@ router.get('/signupcount', function(req, res, next) {
         for(var i = 0; i<length; i++){
 
           //console.log(docs[i].meta.httpRequest.requestUrl);
-          if(docs[i].meta.httpRequest.requestUrl == "/users/register"){
+          if(docs[i].meta.httpRequest.requestUrl == "/signup"){
             regcounter++
           }
         }
