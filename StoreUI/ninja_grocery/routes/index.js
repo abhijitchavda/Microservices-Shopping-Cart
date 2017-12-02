@@ -16,7 +16,11 @@ var flag=0;
 var productChunks=[];
 /* GET home page. */
 
+<<<<<<< HEAD
+router.get('/:cid',function(req,res,next){
+=======
 router.get('/groupshare/:cid',function(req,res,next){
+>>>>>>> 3bf8d2d7909dbec983e00d3f1a1186014b522105
 
 userid=req.params.cid;
 flag=1;
@@ -93,7 +97,11 @@ router.get('/addtocart/:cid',isLoggedIn,function(req, res, next){
    //var c_id=req.session.passport.user;
    //var c_id=request.session.passport.user;
    //console.log("this is the uid---->"+cid);
+<<<<<<< HEAD
+    if(req.session.passport.user){
+=======
     if(flag == 0){
+>>>>>>> 3bf8d2d7909dbec983e00d3f1a1186014b522105
     c_id=req.session.passport.user;    
     }
     else if(flag==1){

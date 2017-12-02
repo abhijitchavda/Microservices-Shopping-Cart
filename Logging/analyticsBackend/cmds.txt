@@ -1,0 +1,12 @@
+
+
+Payments api.
+http://ec2-54-183-181-217.us-west-1.compute.amazonaws.com:3000/paymentcount
+http://ec2-54-183-181-217.us-west-1.compute.amazonaws.com:3000/totalrevenue
+http://ec2-54-183-181-217.us-west-1.compute.amazonaws.com:3000/paymentdata
+
+
+Useractivity api.
+http://ec2-54-183-181-217.us-west-1.compute.amazonaws.com:3000/logincount
+http://ec2-54-183-181-217.us-west-1.compute.amazonaws.com:3000/signupcount
+http://ec2-54-183-181-217.us-west-1.compute.amazonaws.com:3000/useractivitydata

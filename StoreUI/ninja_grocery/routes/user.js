@@ -13,13 +13,24 @@ require('winston-mongodb').MongoDB;
 const reqLogger = new (winston.Logger)({
     transports: [
         new(winston.transports.MongoDB)({
-            db : 'mongodb://localhost:27017/logSystem',
+            db : 'mongodb://54.241.150.45:27017,13.56.58.166:27018,54.215.228.194:27019/logSystem?replicaSet=logdb-replica-set',
             collection: 'useractivitylogs',
             //level:'info'
             // expireAfterSeconds: 2;
         })
     ],
 });
+
+ /*const reqLogger2 = new (winston.Logger)({
+     transports: [
+         new(winston.transports.MongoDB)({
+             db : 'mongodb://54.241.150.45:27017,13.56.58.166:27018,54.215.228.194:27019/logSystem?replicaSet=logdb-replica-set',
+             collection: 'useractivitylogs',
+             //level:'info'
+             // expireAfterSeconds: 2;
+         })
+     ],
+ });*/
 
 
 /* GET users listing. */
@@ -33,7 +44,17 @@ router.get('/profile',isLoggedIn, function(req,res,next){
 });
 
 router.get('/logout', isLoggedIn, function(req, res, next){
+    //console.log(req.body.email);
     req.logOut();
+
+    reqLogger.info(`user has logged out`,{
+        httpRequest:{
+            status: res.statusCode,
+            requestUrl: req.url,
+            requestMethod: req.method,
+            remoteIp: req.connection.remoteAddress,
+        }
+    });
     req.session.destroy();
     res.redirect('/user/signin');
 });
@@ -49,10 +70,22 @@ router.get('/signup', function(req,res,next){
 });
 
 router.post('/signup', passport.authenticate('local.signup',{
-    successRedirect: '/productcatalog',
     failureRedirect: '/user/signup',
     failureFlash: true
-}));
+}),function(request, response) {
+    console.log(request.body.email);
+        reqLogger.info(`${request.body.email} has SignedUp in`,{
+            httpRequest:{
+                status: response.statusCode,
+                requestUrl: request.url,
+                requestMethod: request.method,
+                remoteIp: request.connection.remoteAddress,
+            }
+        });
+        response.redirect('/productcatalog');
+        //adding logs to db.
+    }
+    );
 
 
 router.get('/signin', function(req,res,next){

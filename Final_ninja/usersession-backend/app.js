@@ -5,11 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
-var session = require('express-session');
-var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/shopping');
-var mongoStore = require('connect-mongo')(session);
-var index = require('./routes/index');
+var MongoClient = require('mongodb').MongoClient
+    , assert = require('assert');
+//var session = require('express-session');
+//var mongoose = require('mongoose');
+//mongoose.connect('localhost:27017/shopping');
+//var mongoStore = require('connect-mongo')(session);
+//var index = require('./routes/index');
 var server = require('./routes/server');
 
 var app = express();
@@ -25,13 +27,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
+/*app.use(session({
     secret: 'mysecret',
     resave: false,
     saveUninitialized: false,
     store: new mongoStore({mongooseConnection: mongoose.connection}),
     cookie: {maxAge: 10 * 60 * 1000}
-}));
+}));*/
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', server);
